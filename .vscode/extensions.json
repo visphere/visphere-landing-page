@@ -15,6 +15,7 @@
     "dbaeumer.vscode-eslint",
     "astro-build.astro-vscode",
     "sheltonlouis.astro-snippets",
-    "naumovs.color-highlight"
+    "naumovs.color-highlight",
+    "vitaliymaz.vscode-svg-previewer"
   ]
 }
