@@ -1,0 +1,64 @@
+{
+  "name": "moonsphere-landing-page",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "start:dev": "astro dev --config ./_vite/vite-server.config.mjs",
+    "docker:dev": "astro build --config ./_vite/vite-docker-dev.config.mjs",
+    "docker:prod": "astro build --config ./_vite/vite-docker-prod.config.mjs",
+    "preview": "astro preview --config ./_vite/vite-server.config.mjs",
+    "astro": "astro",
+    "configure:husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
+    "lint:check": "npx eslint src/**/*.{ts,astro}",
+    "lint:fix": "npx eslint src/**/*.{ts,astro} --fix",
+    "format": "npx prettier **/*.{ts,js,cjs,astro,json} --write"
+  },
+  "private": true,
+  "author": {
+    "name": "Miłosz Gilga",
+    "email": "personal@miloszgilga.pl",
+    "url": "https://miloszgilga.pl"
+  },
+  "license": "Apache-2.0",
+  "lint-staged": {
+    "**/*.{ts,js,cjs,astro,json}": [
+      "yarn run lint:fix",
+      "yarn run format"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@astrojs/node": "^5.3.3",
+    "astro": "^2.10.7",
+    "astro-i18n-aut": "^0.3.2",
+    "axios": "^1.4.0",
+    "flat": "^5.0.2",
+    "ramda": "^0.29.0",
+    "undici": "^5.23.0"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^2.0.1",
+    "@astrojs/tailwind": "^4.0.0",
+    "@astrojs/ts-plugin": "^1.1.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@types/flat": "^5.0.2",
+    "@types/node": "^20.4.10",
+    "@types/ramda": "^0.29.3",
+    "@typescript-eslint/eslint-plugin": "^6.3.0",
+    "@typescript-eslint/parser": "^6.3.0",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.47.0",
+    "eslint-plugin-astro": "^0.28.0",
+    "eslint-plugin-json": "^3.1.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.1",
+    "prettier-plugin-astro": "^0.11.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "tailwindcss": "^3.3.3"
+  }
+}

@@ -1,0 +1,4 @@
+dist
+.husky
+.astro
+node_modules
