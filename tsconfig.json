@@ -3,6 +3,7 @@
     "baseUrl": "./",
     "outDir": "./dist",
     "strict": true,
+    "jsx": "react",
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -10,6 +11,8 @@
     "sourceMap": true,
     "declaration": false,
     "paths": {
+      "~/ax-csr/*": ["src/ax-csr/*"],
+      "~/ax-ssr/*": ["src/ax-ssr/*"],
       "~/env/*": ["src/environments/*"],
       "~/i18n/*": ["src/i18n/*"],
       "~/layouts/*": ["src/layouts/*"],

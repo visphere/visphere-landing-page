@@ -26,6 +26,7 @@
 'use strict';
 
 import nodejs from '@astrojs/node';
+import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import { defaultLocaleSitemapFilter, i18n } from 'astro-i18n-aut/integration';
@@ -68,6 +69,7 @@ export default ({
     },
     integrations: [
       tailwind(),
+      react(),
       i18n({
         locales,
         defaultLocale,
