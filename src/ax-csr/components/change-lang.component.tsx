@@ -22,10 +22,10 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
+import { Icon } from '@iconify/react';
 import { type JSX } from 'react';
 import * as React from 'react';
 import clsx from 'clsx';
-import { BsCaretDownFill } from 'react-icons/bs';
 import { environment } from '~/env/environment';
 import { getUiTranslationCaptions } from '~/i18n/captions';
 import { ILocale } from '~/i18n/types';
@@ -100,7 +100,12 @@ const ChangeLang: React.FC<Props> = ({
           alt=""
         />
         {name}
-        <BsCaretDownFill className="ms-2 text-sm" />
+        <Icon
+          icon="bi:caret-down-fill"
+          width={14}
+          height={14}
+          className="ms-2 text-sm"
+        />
       </button>
       {isOpen && (
         <ul className="msph_footer__select-list-container bg-msph-primary-dark">

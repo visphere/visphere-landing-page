@@ -34,6 +34,7 @@
   "dependencies": {
     "@astrojs/node": "^5.3.3",
     "@astrojs/react": "^2.2.1",
+    "@iconify/react": "^4.1.1",
     "astro": "^2.10.7",
     "astro-i18n-aut": "^0.3.2",
     "astro-icon": "^0.8.1",
@@ -44,7 +45,6 @@
     "ramda": "^0.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.10.1",
     "undici": "^5.23.0"
   },
   "devDependencies": {
