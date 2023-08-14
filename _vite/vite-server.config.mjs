@@ -1,10 +1,12 @@
+'use strict';
+
 /*
  * Copyright (c) 2023 by MILOSZ GILGA <https://miloszgilga.pl>
  * Silesian University of Technology
  *
  *   File name: vite-server.config.mjs
- *   Created at: 2023-08-11, 23:20:54
- *   Last updated at: 2023-08-11, 23:20:54
+ *   Created at: 2023-08-13, 23:07:16
+ *   Last updated at: 2023-08-14, 01:52:04
  *
  *   Project name: moonsphere
  *   Module name: moonsphere-landing-page
@@ -22,14 +24,12 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
-'use strict';
-
 import viteCommonConfig from './vite-common.config.mjs';
 
 export default viteCommonConfig({
   landingPageBaseUrl: `http://localhost:${process.env.ENV_MSPH_LANDING_PAGE_DEV_PORT}`,
   clientBaseUrl: `http://localhost:${process.env.ENV_MSPH_WEB_CLIENT_DEV_PORT}`,
   cdnBaseUrl: `http://localhost:${process.env.ENV_MSPH_CONTENT_DISTRIBUTOR_PORT}`,
-  cdnBaseXHR: `https://${process.env.ENV_MSPH_PROD_CONTENT_DISTRIBUTOR_DOMAIN}`,
+  cdnBaseXHR: `http://localhost:${process.env.ENV_MSPH_CONTENT_DISTRIBUTOR_PORT}`,
   isProdMode: false,
 });

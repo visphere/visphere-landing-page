@@ -1,10 +1,11 @@
+'use strict';
 /*
  * Copyright (c) 2023 by MILOSZ GILGA <https://miloszgilga.pl>
  * Silesian University of Technology
  *
- *   File name: .eslintrc.js
+ *   File name: .eslintrc.cjs
  *   Created at: 2023-08-12, 16:33:06
- *   Last updated at: 2023-08-12, 16:33:09
+ *   Last updated at: 2023-08-14, 01:52:24
  *
  *   Project name: moonsphere
  *   Module name: moonsphere-landing-page
@@ -22,7 +23,5 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
-
-'use strict';
 
 module.exports = require('../moonsphere-base/config/eslint/_eslint-landing-page.config.cjs');

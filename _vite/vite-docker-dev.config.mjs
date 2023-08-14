@@ -1,10 +1,12 @@
+'use strict';
+
 /*
  * Copyright (c) 2023 by MILOSZ GILGA <https://miloszgilga.pl>
  * Silesian University of Technology
  *
  *   File name: vite-docker-dev.config.mjs
  *   Created at: 2023-08-11, 23:20:37
- *   Last updated at: 2023-08-11, 23:20:37
+ *   Last updated at: 2023-08-14, 01:51:54
  *
  *   Project name: moonsphere
  *   Module name: moonsphere-landing-page
@@ -22,8 +24,6 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
-'use strict';
-
 import viteCommonConfig from './vite-common.config.mjs';
 
 export default viteCommonConfig({
