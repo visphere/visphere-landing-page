@@ -30,3 +30,10 @@ export const i18nHref = (originalUrl: string, lang: string): string => {
   }
   return `/${lang}${originalUrl}`;
 };
+
+export const i18nSeoHref = (originalUrl: string, lang: string): string => {
+  if (lang === environment.i18nDefaultLocale) {
+    return originalUrl;
+  }
+  return `${originalUrl}/${lang}`;
+};

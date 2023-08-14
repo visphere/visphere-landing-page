@@ -27,7 +27,7 @@ import { environment } from '~/env/environment';
 import { useTranslationsSSR } from '~/i18n/translations';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
 import Header from './header.astro';
-import { i18nHref } from '~/i18n/url-parser';
+import { i18nSeoHref } from '~/i18n/url-parser';
 
 type AstroProps = {
   i18nPageId?: string;
@@ -68,7 +68,7 @@ const seoBannerUrl = `${cdnUrl}/static/seo/og-banner-light.png`;
     <meta name="format-detection" content="telephone=no" />
     <!-- start og:SEO -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={i18nHref(baseLandingUrl!, lang)} />
+    <meta property="og:url" content={i18nSeoHref(baseLandingUrl!, lang)} />
     <meta property="og:title" content="MoonSphere" />
     <meta
       property="og:description"
@@ -76,7 +76,7 @@ const seoBannerUrl = `${cdnUrl}/static/seo/og-banner-light.png`;
     />
     <meta property="og:image" content={seoBannerUrl} />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={i18nHref(baseLandingUrl!, lang)} />
+    <meta property="twitter:url" content={i18nSeoHref(baseLandingUrl!, lang)} />
     <meta property="twitter:title" content="MoonSphere" />
     <meta
       property="twitter:description"
