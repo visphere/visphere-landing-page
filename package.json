@@ -11,7 +11,7 @@
     "configure:husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
     "lint:check": "npx eslint src/**/*.{ts,tsx,astro}",
     "lint:fix": "npx eslint src/**/*.{ts,tsx,astro} --fix",
-    "format": "npx prettier **/*.{ts,tsx,js,cjs,astro,json} --write"
+    "format": "npx prettier **/*.{ts,tsx,js,mjs,cjs,astro,json} --write"
   },
   "private": true,
   "author": {
