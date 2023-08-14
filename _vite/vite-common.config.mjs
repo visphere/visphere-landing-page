@@ -45,6 +45,11 @@ const locales = {
   en: 'en-US',
 };
 
+const availableLocales = [
+  { name: 'Polski', id: 'pl', value: 'pl' },
+  { name: 'English, US', id: 'en', value: 'en-US' },
+];
+
 export default ({
   landingPageBaseUrl,
   clientBaseUrl,
@@ -70,7 +75,10 @@ export default ({
       tailwind(),
       react(),
       i18n({
-        locales,
+        locales: availableLocales.reduce((acc, locale) => {
+          acc[locale.id] = locale.value;
+          return acc;
+        }, {}),
         defaultLocale,
       }),
       sitemap({
@@ -85,7 +93,7 @@ export default ({
       define: {
         'process.env.__IS_PRODUCTION_MODE__': isProdMode,
         'process.env.__I18N_DEFAULT_LOCALE__': JSON.stringify(defaultLocale),
-        'process.env.__I18N_LOCALES_MAP__': JSON.stringify(locales),
+        'process.env.__I18N_LOCALES_MAP__': JSON.stringify(availableLocales),
         'process.env.__LANDING_PAGE_BASE_URL__':
           JSON.stringify(landingPageBaseUrl),
         'process.env.__CLIENT_BASE_URL__': JSON.stringify(clientBaseUrl),

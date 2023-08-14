@@ -25,7 +25,7 @@
 import { APIContext, MiddlewareNext } from 'astro';
 import { i18nMiddleware } from 'astro-i18n-aut';
 import { sequence } from 'astro/middleware';
-import { loadTranslations } from './i18n/translations';
+import { loadTranslationsSSR } from './i18n/translations';
 
 const i18n = i18nMiddleware({ defaultLocale: 'pl' });
 
@@ -37,7 +37,7 @@ async function i18nLoader(
   if (pathname === '' || pathname === '/') {
     pathname = `/root`;
   }
-  await loadTranslations(url, `landing-page/pages${pathname}`);
+  await loadTranslationsSSR(url, `landing-page/pages${pathname}`);
   return next();
 }
 

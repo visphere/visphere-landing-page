@@ -1,11 +1,10 @@
----
 /*
  * Copyright (c) 2023 by MILOSZ GILGA <https://miloszgilga.pl>
  * Silesian University of Technology
  *
- *   File name: index.astro
- *   Created at: 2023-08-12, 11:59:47
- *   Last updated at: 2023-08-12, 11:59:47
+ *   File name: url-parser.ts
+ *   Created at: 2023-08-14, 00:48:29
+ *   Last updated at: 2023-08-14, 00:48:29
  *
  *   Project name: moonsphere
  *   Module name: moonsphere-landing-page
@@ -23,19 +22,11 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
-import { useTranslationsSSR } from '~/i18n/translations';
-import { i18nHref } from '~/i18n/url-parser';
-import { getSafetyLocaleSSR } from '~/i18n/utils';
-import MainLayout from '~/layouts/main-layout.astro';
+import { environment } from '~/env/environment';
 
-const { lang } = getSafetyLocaleSSR(Astro.url);
-const t = useTranslationsSSR('msph.landingPage.about.pageContent');
----
-
-<MainLayout i18nPageId="about">
-  <h1>ABOUT PAGE</h1>
-  <div class="my-3">
-    <b>{t('testProperty')}</b>
-  </div>
-  <a href={i18nHref('/', lang)}>GO TO ROOT</a>
-</MainLayout>
+export const i18nHref = (originalUrl: string, lang: string): string => {
+  if (lang === environment.i18nDefaultLocale) {
+    return originalUrl;
+  }
+  return `/${lang}${originalUrl}`;
+};

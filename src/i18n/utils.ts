@@ -25,14 +25,21 @@
 import { getLocale } from 'astro-i18n-aut';
 import { environment } from '~/env/environment';
 
-export const getSafetyLocale = (url: URL): string => {
+export const getSafetyLocaleSSR = (
+  url: URL
+): { locale: string; lang: string } => {
   const { i18nDefaultLocale, i18nLocalesMap } = environment;
   let localeId: string = getLocale(url)!;
   if (localeId === undefined) {
     localeId = i18nDefaultLocale!;
   }
   if (!i18nLocalesMap) {
-    return localeId;
+    return { lang: localeId, locale: localeId };
   }
-  return i18nLocalesMap[localeId as keyof typeof i18nLocalesMap] as string;
+  return {
+    locale:
+      i18nLocalesMap.find(({ id }) => id === localeId)?.value ||
+      i18nLocalesMap[0].value,
+    lang: localeId,
+  };
 };

@@ -26,26 +26,25 @@ import axios from 'axios';
 import flatPackage from 'flat';
 import * as rambda from 'ramda';
 import { environment } from '~/env/environment';
-import { getSafetyLocale } from './utils';
+import { getSafetyLocaleSSR } from './utils';
 
 const translations = {};
 const defModules = ['web-common', 'landing-page'];
 
-export const loadTranslations = async (
+export const loadTranslationsSSR = async (
   url: URL,
   i18nPageModule: string
 ): Promise<void> => {
-  const lang = getSafetyLocale(url);
+  const { locale } = getSafetyLocaleSSR(url);
   const { contentDistributorBaseXHR: cdnXHR } = environment;
   const result = await Promise.all(
     [...defModules, i18nPageModule].map(async module => {
       try {
         const { data } = await axios.get(
-          `${cdnXHR}/static/i18n/${module}/${lang}.json`
+          `${cdnXHR}/static/i18n/${module}/${locale}.json`
         );
         return data;
       } catch (err) {
-        console.log(err);
         return {};
       }
     })
@@ -57,7 +56,9 @@ export const loadTranslations = async (
   Object.assign(translations, flatPackage.unflatten(flatted));
 };
 
-export const useTranslations = (prefix?: string): ((key: string) => string) => {
+export const useTranslationsSSR = (
+  prefix?: string
+): ((key: string) => string) => {
   return (key: string) => {
     const fullKey = `${prefix}.${key}`;
     return rambda.pathOr(fullKey, rambda.split('.', fullKey), translations);
