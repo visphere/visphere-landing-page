@@ -1,0 +1,170 @@
+---
+/*
+ * Copyright (c) 2023 by MILOSZ GILGA <https://miloszgilga.pl>
+ * Silesian University of Technology
+ *
+ *   File name: footer.astro
+ *   Created at: 2023-08-13, 14:55:56
+ *   Last updated at: 2023-08-13, 14:55:56
+ *
+ *   Project name: moonsphere
+ *   Module name: moonsphere-landing-page
+ *
+ * This project is a part of "MoonSphere" instant messenger system. This system is a part of
+ * completing an engineers degree in computer science at Silesian University of Technology.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at
+ *
+ *   <http://www.apache.org/license/LICENSE-2.0>
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the license.
+ */
+import * as changeCase from 'change-case';
+import ChangeLang from '~/ax-csr/components/change-lang.component';
+import { environment } from '~/env/environment';
+import { useTranslationsSSR } from '~/i18n/translations';
+import { i18nHref } from '~/i18n/url-parser';
+import { getSafetyLocaleSSR } from '~/i18n/utils';
+
+const { lang } = getSafetyLocaleSSR(Astro.url);
+const t = useTranslationsSSR('msph.webCommon.footer');
+
+const footerLinks = {
+  application: ['about', 'download', 'brand', 'tutorial'],
+  start: ['login', 'register', 'resetPassword'],
+  policies: [
+    'termsAndConditions',
+    'privacyPolicy',
+    'thirdPartySoftware',
+    'licenses',
+  ],
+};
+
+const { contentDistributorBaseUrl: cdnUrl, clientBaseUrl } = environment;
+
+const logoUrl = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
+const iconUrl = `${cdnUrl}/static/logo/moonsphere-light-small-variant-2.svg`;
+const currYear = new Date().getFullYear();
+
+const changeCamelToParamCase = (link: string): string =>
+  changeCase.paramCase(link);
+---
+
+<footer class="p-5 md:p-5 lg:p-10 bg-msph-primary-dark text-msph-primary-light">
+  <div
+    class="grid grid-cols-12 gap-y-5 lg:gap-y-10 px-0 lg:px-10 mx-auto max-w-[1260px] w-full">
+    <div
+      class="col-span-12 md:col-span-5 lg:col-span-4 flex flex-col items-center sm:items-start sm:justify-center">
+      <a
+        href={i18nHref('/', lang)}
+        class="flex flex-col sm:flex-row w-fit items-center">
+        <img src={logoUrl} alt="" width="50" height="50" />
+        <h2 class="mt-2 sm:mt-0 sm:ms-3 text-2xl font-bold">MoonSphere</h2>
+      </a>
+      <p class="mt-8 leading-[22px] font-light mb-5">
+        {t('description')}
+      </p>
+      <ChangeLang
+        client:visible
+        currentLocale={getSafetyLocaleSSR(Astro.url)}
+        currentPage={Astro.url}
+      />
+    </div>
+    <div class="lg:col-span-1 hidden sm:block"></div>
+    <div
+      class="col-span-12 md:col-span-6 lg:col-span-7 grid grid-cols-12 gap-5 lg:gap-10">
+      <div class="col-span-12 sm:col-span-6 lg:col-span-4">
+        <h3 class="text-msph-primary-tint mb-2 md:mb-4">
+          {t('headers.application.name')}
+        </h3>
+        <ul class="grid gap-1">
+          {
+            footerLinks.application.map(link => (
+              <li>
+                <a
+                  href={i18nHref(`/${link}`, lang)}
+                  class="msph_footer__link font-light">
+                  {t(`headers.application.links.${link}`)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="col-span-12 sm:col-span-6 lg:col-span-4">
+        <h3 class="text-msph-primary-tint mb-2 md:mb-4">
+          {t('headers.start.name')}
+        </h3>
+        <ul class="grid gap-1">
+          {
+            footerLinks.start.map(link => (
+              <li>
+                <a
+                  href={`${clientBaseUrl}/auth/${changeCamelToParamCase(link)}`}
+                  class="msph_footer__link font-light"
+                  target="_blank">
+                  {t(`headers.start.links.${link}`)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="col-span-12 sm:col-span-6 lg:col-span-4">
+        <h3 class="text-msph-primary-tint mb-2 md:mb-4">
+          {t('headers.policies.name')}
+        </h3>
+        <ul class="grid gap-1">
+          {
+            footerLinks.policies.map(link => (
+              <li>
+                <a
+                  href={i18nHref(`/${changeCamelToParamCase(link)}`, lang)}
+                  class="msph_footer__link font-light">
+                  {t(`headers.policies.links.${link}`)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <div class="col-span-12">
+      <hr class="border-msph-primary-tint mb-3" />
+      <div class="msph_copy-footer__container">
+        <div class="msph_copy-footer__rights">
+          <div>
+            <span class="text-gray-500 font-medium me-1"
+              >&copy; {currYear} by</span
+            >
+            <a href={i18nHref('/', lang)} class="hover:underline"
+              >MoonSphere Systems</a
+            >
+          </div>
+          <div class="flex justify-center md:justify-start">
+            <span class="text-gray-500 font-medium me-2">Powered by</span>
+            <div class="flex">
+              <img
+                src={iconUrl}
+                alt=""
+                width="16"
+                height="16"
+                class="mt-0.5 object-contain me-1"
+              />
+               MoonSphere
+            </div>
+          </div>
+        </div>
+        <div class="w-full md:w-fit">
+          <a href={clientBaseUrl} class="msph_copy-footer__open-app-button">
+            {t('openAppButton')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

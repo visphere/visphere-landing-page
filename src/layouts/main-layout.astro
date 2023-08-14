@@ -27,6 +27,7 @@ import { environment } from '~/env/environment';
 import { useTranslationsSSR } from '~/i18n/translations';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
 import Header from './header.astro';
+import Footer from './footer.astro';
 import { i18nSeoHref } from '~/i18n/url-parser';
 
 type AstroProps = {
@@ -86,7 +87,12 @@ const seoBannerUrl = `${cdnUrl}/static/seo/og-banner-light.png`;
     <!-- end og:SEO -->
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body>
-    <slot />
+  <body
+    class="flex flex-col min-h-screen font-medium bg-msph-primary-light text-msph-primary-dark">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
