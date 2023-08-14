@@ -22,11 +22,12 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
+import { ITranslation } from '~/i18n/types';
 
 export const environment = {
   production: process.env.__IS_PRODUCTION_MODE__,
   i18nDefaultLocale: process.env.__I18N_DEFAULT_LOCALE__,
-  i18nLocalesMap: process.env.__I18N_LOCALES_MAP__,
+  i18nLocalesMap: process.env.__I18N_LOCALES_MAP__ as unknown as ITranslation[],
   baseLandingUrl: process.env.__LANDING_PAGE_BASE_URL__,
   clientBaseUrl: process.env.__CLIENT_BASE_URL__,
   contentDistributorBaseUrl: process.env.__CDN_BASE_URL__,
