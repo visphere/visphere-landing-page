@@ -7,6 +7,9 @@
   "prettier.configPath": "./.prettierrc.cjs",
   "editor.detectIndentation": false,
   "editor.mouseWheelZoom": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "all",
   "explorer.autoReveal": false,
   "explorer.compactFolders": false,
   "workbench.tree.indent": 20,
@@ -25,10 +28,10 @@
   "psi-header.changes-tracking": {
     "isActive": true,
     "autoHeader": "autoSave",
-    "include": ["javascript", "typescript", "scss", "astro"],
+    "include": ["javascript", "typescript", "scss", "astro", "typescriptreact"],
     "includeGlob": ["**/*.sh"],
     "exclude": ["json", "jsonl", "jsonc"],
-    "excludeGlob": [".husky/**/*"],
+    "excludeGlob": ["./.husky/**/*", "./.vscode/**"],
     "enforceHeader": true,
     "replace": ["File name", "Last modified"]
   },

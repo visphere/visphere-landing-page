@@ -16,6 +16,7 @@
     "astro-build.astro-vscode",
     "sheltonlouis.astro-snippets",
     "naumovs.color-highlight",
-    "vitaliymaz.vscode-svg-previewer"
+    "vitaliymaz.vscode-svg-previewer",
+    "oderwat.indent-rainbow"
   ]
 }
