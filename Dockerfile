@@ -22,7 +22,7 @@ WORKDIR /moonsphere
 
 RUN rm -rf moonsphere-base
 
-FROM node:18.16.0-bullseye-slim
+FROM node:18.16.0-alpine
 
 LABEL maintainer="MoonSphere Systems <info@moonsphere.pl>"
 
