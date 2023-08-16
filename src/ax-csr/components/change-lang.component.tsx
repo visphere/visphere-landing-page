@@ -57,7 +57,7 @@ const ChangeLang: React.FC<Props> = ({
 
   const generateLangUrl = (lang: string): string => {
     if (lang === i18nDefaultLocale) {
-      return currentPage.pathname.replace(/\/(en|pl)/i, '');
+      return currentPage.pathname.replace(/\/(en|pl)/i, '') || '/';
     }
     return `${lang}${currentPage.pathname}`;
   };
