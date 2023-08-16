@@ -63,7 +63,7 @@ const changeCamelToParamCase = (link: string): string =>
         href={i18nHref('/', lang)}
         class="flex flex-col sm:flex-row w-fit items-center">
         <img src={logoUrl} alt="" width="50" height="50" />
-        <h2 class="mt-2 sm:mt-0 sm:ms-3 text-2xl font-bold">MoonSphere</h2>
+        <h2 class="mt-2 sm:mt-0 sm:ms-3 text-2xl font-logo">MoonSphere</h2>
       </a>
       <p class="mt-8 leading-[22px] font-light mb-5">
         {t('description')}
@@ -155,7 +155,7 @@ const changeCamelToParamCase = (link: string): string =>
                 height="16"
                 class="mt-0.5 object-contain me-1"
               />
-               MoonSphere
+              <span class="font-logo">MoonSphere</span>
             </div>
           </div>
         </div>
