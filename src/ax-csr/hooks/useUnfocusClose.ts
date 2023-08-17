@@ -2,7 +2,7 @@
  * Copyright (c) 2023 by MILOSZ GILGA <https://miloszgilga.pl>
  * Silesian University of Technology
  *
- *   File name: use-unfocus-close.ts
+ *   File name: useUnfocusClose.ts
  *   Created at: 2023-08-14, 00:02:42
  *   Last updated at: 2023-08-14, 00:02:42
  *
@@ -28,15 +28,11 @@ type Props = {
   initialActive: boolean;
 };
 
-const useUnfocusClose = ({
+const useUnfocusClose = <T extends HTMLElement>({
   initialActive,
-}: Props): [
-  React.MutableRefObject<any>,
-  boolean,
-  Dispatch<SetStateAction<boolean>>,
-] => {
+}: Props): [React.RefObject<T>, boolean, Dispatch<SetStateAction<boolean>>] => {
   const [isActive, setIsActive] = useState<boolean>(initialActive);
-  const containerRef = useRef<any>();
+  const containerRef = useRef<T>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent): void => {

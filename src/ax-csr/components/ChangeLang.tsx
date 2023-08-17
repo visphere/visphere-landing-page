@@ -2,7 +2,7 @@
  * Copyright (c) 2023 by MILOSZ GILGA <https://miloszgilga.pl>
  * Silesian University of Technology
  *
- *   File name: change-lang.component.tsx
+ *   File name: ChangeLang.tsx
  *   Created at: 2023-08-13, 22:26:16
  *   Last updated at: 2023-08-13, 22:30:39
  *
@@ -29,7 +29,7 @@ import { CaretDownFill } from 'react-bootstrap-icons';
 import { environment } from '~/env/environment';
 import { getUiTranslationCaptions } from '~/i18n/captions';
 import { ILocale } from '~/i18n/types';
-import useUnfocusClose from '../hooks/use-unfocus-close';
+import useUnfocusClose from '../hooks/useUnfocusClose';
 
 type Props = {
   currentPage: URL;
@@ -40,7 +40,7 @@ const ChangeLang: React.FC<Props> = ({
   currentPage,
   currentLocale,
 }): JSX.Element => {
-  const [buttonRef, isOpen, setIsOpen] = useUnfocusClose({
+  const [buttonRef, isOpen, setIsOpen] = useUnfocusClose<HTMLButtonElement>({
     initialActive: false,
   });
 
