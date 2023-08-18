@@ -68,7 +68,7 @@ const SlideHeader: React.FC<Props> = ({
       <li key={link}>
         <a
           href={i18nHref(`/${link}`, lang)}
-          className="hover:underline font-semibold block">
+          className="hover:underline font-medium block">
           {translation}
         </a>
       </li>
@@ -93,7 +93,7 @@ const SlideHeader: React.FC<Props> = ({
           <div className="flex gap-10 items-center">
             <a href={i18nHref('/', lang)} className="flex gap-2">
               <img src={logoImagePath} alt="" width={30} height={30} />
-              <h1 className="font-logo text-2xl leading-[28px] font-semibold">
+              <h1 className="font-logo text-2xl leading-[28px] font-medium">
                 MoonSphere
               </h1>
             </a>

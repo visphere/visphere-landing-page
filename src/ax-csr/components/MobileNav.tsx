@@ -25,6 +25,7 @@
 import { type JSX, useEffect, useRef, useState } from 'react';
 import * as React from 'react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { List, XLg } from 'react-bootstrap-icons';
 import {
@@ -47,6 +48,7 @@ type Props = {
   currentPage: URL;
   headerLinks: HeaderLink[];
   additionalTranslations: AdditionalTranslations;
+  foreground?: string;
 };
 
 const MobileNav: React.FC<Props> = ({
@@ -55,6 +57,7 @@ const MobileNav: React.FC<Props> = ({
   currentPage,
   headerLinks,
   additionalTranslations,
+  foreground = 'text-msph-primary-dark',
 }): JSX.Element => {
   const { clientBaseUrl, contentDistributorBaseUrl: cdnUrl } = environment;
   const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
@@ -67,7 +70,7 @@ const MobileNav: React.FC<Props> = ({
       <li key={link}>
         <a
           href={i18nHref(`/${link}`, lang)}
-          className="font-semibold block py-5 text-xl hover:underline">
+          className="font-semibold block py-4 text-xl hover:underline">
           {translation}
         </a>
       </li>
@@ -95,7 +98,7 @@ const MobileNav: React.FC<Props> = ({
         <div className="flex justify-between items-center">
           <a href={i18nHref('/', lang)} className="flex gap-2">
             <img src={logoImagePath} alt="" width={30} height={30} />
-            <h1 className="font-logo text-2xl leading-[28px] font-semibold">
+            <h1 className="font-logo text-2xl leading-[28px] font-medium">
               MoonSphere
             </h1>
           </a>
@@ -132,7 +135,7 @@ const MobileNav: React.FC<Props> = ({
         </div>
       </motion.nav>
       <button
-        className="flex items-center p-1 lg:hidden"
+        className={clsx(`flex items-center p-1 lg:hidden`, foreground)}
         onClick={() => setIsVisible(true)}>
         <List width={24} height={24} />
       </button>
