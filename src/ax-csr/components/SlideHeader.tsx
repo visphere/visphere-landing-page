@@ -41,7 +41,7 @@ const variants = {
   slideUp: { opacity: 0, y: '-100%' },
 };
 
-const TRIGGER_Y_POS_PX = 100;
+const TRIGGER_Y_POS_PX = 50;
 
 type Props = {
   currentLocale: ILocale;
