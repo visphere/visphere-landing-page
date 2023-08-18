@@ -22,9 +22,10 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
-import { type JSX } from 'react';
 import * as React from 'react';
+import { type JSX } from 'react';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { CaretDownFill } from 'react-bootstrap-icons';
 import { environment } from '~/env/environment';
 import { getUiTranslationCaptions } from '~/i18n/captions';
@@ -34,11 +35,17 @@ import useUnfocusClose from '../hooks/useUnfocusClose';
 type Props = {
   currentPage: URL;
   currentLocale: ILocale;
+  position?: 'top' | 'bottom';
+  hideLabels?: boolean;
+  theme?: 'light' | 'dark';
 };
 
 const ChangeLang: React.FC<Props> = ({
   currentPage,
   currentLocale,
+  position = 'top',
+  hideLabels,
+  theme = 'dark',
 }): JSX.Element => {
   const [buttonRef, isOpen, setIsOpen] = useUnfocusClose<HTMLButtonElement>({
     initialActive: false,
@@ -62,6 +69,15 @@ const ChangeLang: React.FC<Props> = ({
     return `${lang}${currentPage.pathname}`;
   };
 
+  const variants = {
+    open: { opacity: 1, y: 0, display: 'flex' },
+    closed: {
+      opacity: 0,
+      y: `${position === 'bottom' ? '-' : ''}15%`,
+      display: 'none',
+    },
+  };
+
   const listLangElements: JSX.Element[] = i18nLocalesMap.map(
     ({ id, name, value }) => (
       <li key={value}>
@@ -69,7 +85,7 @@ const ChangeLang: React.FC<Props> = ({
           href={generateLangUrl(id)}
           className={clsx(
             'msph_footer__select-list-element',
-            'hover:bg-gray-600',
+            theme === 'dark' ? 'hover:bg-gray-600' : 'hover:bg-gray-200',
             value === currentLocale.locale &&
               'msph_footer__select-list-element--active'
           )}>
@@ -91,22 +107,30 @@ const ChangeLang: React.FC<Props> = ({
       <button
         ref={buttonRef}
         onClick={handleToggleMenuVisibility}
-        className="msph_footer__select-list-button">
+        className="msph_footer__select-list-button h-full">
         <img
           src={`${cdnPatch}/static/icon/lang/${value}.png`}
           width="23"
           height="23"
-          className="me-2"
+          className={clsx(!hideLabels && 'me-2')}
           alt=""
         />
-        {name}
+        {!hideLabels && name}
         <CaretDownFill width={14} height={14} className="ms-2 text-sm" />
       </button>
-      {isOpen && (
-        <ul className="msph_footer__select-list-container bg-msph-primary-dark">
-          {listLangElements}
-        </ul>
-      )}
+      <motion.ul
+        animate={isOpen ? 'open' : 'closed'}
+        transition={{ ease: 'easeInOut' }}
+        variants={variants}
+        className={clsx(
+          'msph_footer__select-list-container z-0 opacity-0',
+          position === 'bottom'
+            ? 'translate-y-[15%] right-0 top-full mt-1 mb-0'
+            : '-translate-y-[15%] left-0 bottom-full',
+          theme === 'dark' ? 'bg-msph-primary-dark' : 'bg-msph-primary-light'
+        )}>
+        {listLangElements}
+      </motion.ul>
     </div>
   );
 };
