@@ -38,7 +38,7 @@ import MobileNav from './MobileNav';
 
 const variants = {
   slideDown: { opacity: 1, top: '10px' },
-  slideUp: { opacity: 0, top: '-20px' },
+  slideUp: { opacity: 0, top: '-80px' },
 };
 
 const TRIGGER_Y_POS_PX = 50;
@@ -85,7 +85,7 @@ const SlideHeader: React.FC<Props> = ({
       transition={{ ease: 'easeInOut' }}
       variants={variants}
       className={clsx(
-        'fixed w-full top-[10px] px-3 z-50',
+        'fixed w-full top-[80px] px-3 z-50',
         scrollY.getVelocity() <= TRIGGER_Y_POS_PX && 'opacity-0 -top-y-[25px]'
       )}>
       <div className="msph_ratio-container bg-white shadow-md px-6 py-4 rounded-[25px]">
