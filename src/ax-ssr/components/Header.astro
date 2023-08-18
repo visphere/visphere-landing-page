@@ -3,7 +3,7 @@
  * Copyright (c) 2023 by MILOSZ GILGA <https://miloszgilga.pl>
  * Silesian University of Technology
  *
- *   File name: header.astro
+ *   File name: Header.astro
  *   Created at: 2023-08-13, 14:55:51
  *   Last updated at: 2023-08-13, 14:55:51
  *
@@ -23,6 +23,46 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
+import SlideHeader from '~/ax-csr/components/SlideHeader';
+import { useTranslationsSSR } from '~/i18n/translations';
+import { getSafetyLocaleSSR } from '~/i18n/utils';
+
+const locale = getSafetyLocaleSSR(Astro.url);
+const t = useTranslationsSSR('msph.webCommon.footer');
+
+export type HeaderLink = {
+  link: string;
+  translation: string;
+};
+
+export type AdditionalTranslations = {
+  signIn: string;
+  signUp: string;
+  openApp: string;
+};
+
+const headerLinks: HeaderLink[] = [
+  'about',
+  'download',
+  'brand',
+  'tutorial',
+].map(link => ({
+  link,
+  translation: t(`headers.application.links.${link}`),
+}));
+
+const additionalTranslations: AdditionalTranslations = {
+  signIn: t(`headers.start.links.login`),
+  signUp: t(`headers.start.links.register`),
+  openApp: t(`openAppButton`),
+};
 ---
 
-<header>header SSR component</header>
+<SlideHeader
+  client:visible
+  currentLocale={locale}
+  currentPage={Astro.url}
+  headerLinks={headerLinks}
+  additionalTranslations={additionalTranslations}
+/>
+<header class="msph_ratio-container">static header</header>
