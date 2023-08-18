@@ -54,9 +54,10 @@ const changeCamelToParamCase = (link: string): string =>
   changeCase.paramCase(link);
 ---
 
-<footer class="p-5 md:p-5 lg:p-10 bg-msph-primary-dark text-msph-primary-light">
+<footer
+  class="p-5 md:p-5 lg:p-10 bg-msph-primary-dark text-msph-primary-light relative z-10">
   <div
-    class="grid grid-cols-12 gap-y-5 lg:gap-y-10 px-0 lg:px-10 mx-auto max-w-[1260px] w-full">
+    class="grid grid-cols-12 gap-y-5 lg:gap-y-10 px-0 lg:px-10 msph_ratio-container">
     <div
       class="col-span-12 md:col-span-5 lg:col-span-4 flex flex-col items-center sm:items-start sm:justify-center">
       <a
@@ -68,11 +69,13 @@ const changeCamelToParamCase = (link: string): string =>
       <p class="mt-8 leading-[22px] font-light mb-5">
         {t('description')}
       </p>
-      <ChangeLang
-        client:visible
-        currentLocale={getSafetyLocaleSSR(Astro.url)}
-        currentPage={Astro.url}
-      />
+      <div class="w-full">
+        <ChangeLang
+          client:visible
+          currentLocale={getSafetyLocaleSSR(Astro.url)}
+          currentPage={Astro.url}
+        />
+      </div>
     </div>
     <div class="lg:col-span-1 hidden sm:block"></div>
     <div
