@@ -23,15 +23,42 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
+import { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
 import { useTranslationsSSR } from '~/i18n/translations';
+import { i18nHref } from '~/i18n/url-parser';
+import { getSafetyLocaleSSR } from '~/i18n/utils';
 import MainLayout from '~/layouts/main-layout.astro';
 
+const { lang } = getSafetyLocaleSSR(Astro.url);
 const t = useTranslationsSSR('msph.landingPage.root.pageContent');
+
+const headerVariant: PageHeaderVariant = {
+  background: 'bg-msph-secondary-dark',
+  foreground: 'text-msph-primary-light',
+  signUpButton: {
+    fg: 'text-msph-primary-light',
+    border: 'border-msph-primary-light',
+  },
+  openAppButton: {
+    bg: 'bg-msph-primary-light',
+    fg: 'text-msph-primary-dark',
+    border: 'border-msph-primary-light',
+  },
+  fontWeight: 'font-light',
+  langPickedTheme: 'dark',
+};
 ---
 
-<MainLayout i18nPageId="root">
-  <h1>ROOT PAGE</h1>
-  <div class="my-3">
-    <b>{t('testProperty')}</b>
+<MainLayout i18nPageId="root" headerVariant={headerVariant}>
+  <div slot="headerContent" class="grid grid-cols-12">
+    <div class="col-span-12 md:col-span-6">LEFT</div>
+    <div class="col-span-12 md:col-span-6">RIGHT</div>
+  </div>
+  <div slot="mainContent">
+    <h1>ROOT PAGE</h1>
+    <div class="my-3">
+      <b>{t('testProperty')}</b>
+    </div>
+    <a href={i18nHref('/', lang)}>GO TO ROOT</a>
   </div>
 </MainLayout>

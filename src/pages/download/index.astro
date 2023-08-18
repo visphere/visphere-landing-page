@@ -23,6 +23,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
+import { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
 import { useTranslationsSSR } from '~/i18n/translations';
 import { i18nHref } from '~/i18n/url-parser';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
@@ -30,12 +31,31 @@ import MainLayout from '~/layouts/main-layout.astro';
 
 const { lang } = getSafetyLocaleSSR(Astro.url);
 const t = useTranslationsSSR('msph.landingPage.download.pageContent');
+
+const headerVariant: PageHeaderVariant = {
+  background: 'bg-msph-primary-accent',
+  foreground: 'text-msph-primary-dark',
+  signUpButton: {
+    fg: 'text-msph-primary-dark',
+    border: 'border-msph-primary-dark',
+  },
+  openAppButton: {
+    bg: 'bg-msph-primary-dark',
+    fg: 'text-msph-primary-light',
+    border: 'border-msph-primary-dark',
+  },
+  fontWeight: 'font-medium',
+  langPickedTheme: 'light',
+};
 ---
 
-<MainLayout i18nPageId="download">
-  <h1>DOWNLOAD PAGE</h1>
-  <div class="my-3">
-    <b>{t('testProperty')}</b>
+<MainLayout i18nPageId="download" headerVariant={headerVariant}>
+  <div slot="headerContent">HEADER CONTENT</div>
+  <div slot="mainContent">
+    <h1>DOWNLOAD PAGE</h1>
+    <div class="my-3">
+      <b>{t('testProperty')}</b>
+    </div>
+    <a href={i18nHref('/', lang)}>GO TO ROOT</a>
   </div>
-  <a href={i18nHref('/', lang)}>GO TO ROOT</a>
 </MainLayout>

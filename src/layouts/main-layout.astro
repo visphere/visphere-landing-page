@@ -28,14 +28,15 @@ import { useTranslationsSSR } from '~/i18n/translations';
 import { i18nSeoHref } from '~/i18n/url-parser';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
 import Footer from '~/ax-ssr/components/Footer.astro';
-import Header from '~/ax-ssr/components/Header.astro';
+import Header, { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
 
 type AstroProps = {
   i18nPageId?: string;
   pageTitle?: string;
+  headerVariant: PageHeaderVariant;
 };
 
-const { i18nPageId, pageTitle } = Astro.props as AstroProps;
+const { i18nPageId, pageTitle, headerVariant } = Astro.props as AstroProps;
 const { locale, lang } = getSafetyLocaleSSR(Astro.url);
 const t = useTranslationsSSR('msph');
 
@@ -89,9 +90,11 @@ const seoBannerUrl = `${cdnUrl}/static/seo/og-banner-light.png`;
   </head>
   <body
     class="flex flex-col min-h-screen font-medium bg-msph-primary-light text-msph-primary-dark">
-    <Header />
-    <main class="flex-grow">
-      <slot />
+    <Header headerVariant={headerVariant}>
+      <slot name="headerContent" />
+    </Header>
+    <main class="flex-grow h-[80vh]">
+      <slot name="mainContent" />
     </main>
     <Footer />
   </body>

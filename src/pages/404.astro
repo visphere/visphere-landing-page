@@ -23,9 +23,20 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
+import { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
+import { i18nHref } from '~/i18n/url-parser';
+import { getSafetyLocaleSSR } from '~/i18n/utils';
 import MainLayout from '~/layouts/main-layout.astro';
+
+const { lang } = getSafetyLocaleSSR(Astro.url);
+
+const headerVariant: PageHeaderVariant = {};
 ---
 
-<MainLayout i18nPageId="notFound">
-  <h1>NOT FOUND PAGE</h1>
+<MainLayout i18nPageId="notFound" headerVariant={headerVariant}>
+  <div slot="headerContent">HEADER CONTENT</div>
+  <div slot="mainContent">
+    <h1>404 NOT FOUND</h1>
+    <a href={i18nHref('/', lang)}>GO TO ROOT</a>
+  </div>
 </MainLayout>
