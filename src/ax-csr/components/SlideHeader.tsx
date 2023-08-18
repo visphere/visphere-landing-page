@@ -37,8 +37,8 @@ import ChangeLang from './ChangeLang';
 import MobileNav from './MobileNav';
 
 const variants = {
-  slideDown: { opacity: 1, y: 0 },
-  slideUp: { opacity: 0, y: '-100%' },
+  slideDown: { opacity: 1, top: '10px' },
+  slideUp: { opacity: 0, top: '-20px' },
 };
 
 const TRIGGER_Y_POS_PX = 50;
@@ -85,9 +85,8 @@ const SlideHeader: React.FC<Props> = ({
       transition={{ ease: 'easeInOut' }}
       variants={variants}
       className={clsx(
-        'fixed w-full top-2 px-3 z-50',
-        scrollY.getVelocity() <= TRIGGER_Y_POS_PX &&
-          'opacity-0 -translate-y-[100%]'
+        'fixed w-full top-[10px] px-3 z-50',
+        scrollY.getVelocity() <= TRIGGER_Y_POS_PX && 'opacity-0 -top-y-[25px]'
       )}>
       <div className="msph_ratio-container bg-white shadow-md px-6 py-4 rounded-[25px]">
         <div className="flex justify-between items-center w-full">
