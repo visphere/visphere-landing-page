@@ -27,10 +27,10 @@ import * as changeCase from 'change-case';
 import ChangeLang from '~/ax-csr/components/ChangeLang';
 import { environment } from '~/env/environment';
 import { useTranslationsSSR } from '~/i18n/translations';
-import { i18nHref } from '~/i18n/url-parser';
+import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
 
-const { lang } = getSafetyLocaleSSR(Astro.url);
+const { lang, locale } = getSafetyLocaleSSR(Astro.url);
 const t = useTranslationsSSR('msph.webCommon.footer');
 
 const footerLinks = {
@@ -107,7 +107,10 @@ const changeCamelToParamCase = (link: string): string =>
             footerLinks.start.map(link => (
               <li>
                 <a
-                  href={`${clientBaseUrl}/auth/${changeCamelToParamCase(link)}`}
+                  href={i18nClientHref(
+                    `${clientBaseUrl}/auth/${changeCamelToParamCase(link)}`,
+                    locale
+                  )}
                   class="msph_footer__link font-light"
                   target="_blank">
                   {t(`headers.start.links.${link}`)}
@@ -163,7 +166,9 @@ const changeCamelToParamCase = (link: string): string =>
           </div>
         </div>
         <div class="w-full md:w-fit">
-          <a href={clientBaseUrl} class="msph_copy-footer__open-app-button">
+          <a
+            href={i18nClientHref(clientBaseUrl!, locale)}
+            class="msph_copy-footer__open-app-button">
             {t('openAppButton')}
           </a>
         </div>

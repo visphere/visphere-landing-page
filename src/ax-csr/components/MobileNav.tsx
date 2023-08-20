@@ -34,7 +34,7 @@ import {
 } from '~/ax-ssr/components/Header.astro';
 import { environment } from '~/env/environment';
 import { ILocale } from '~/i18n/types';
-import { i18nHref } from '~/i18n/url-parser';
+import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
 import ChangeLang from './ChangeLang';
 
 const variants = {
@@ -118,17 +118,23 @@ const MobileNav: React.FC<Props> = ({
         <ul className="flex-grow mt-5">{generatedHeaderLinks}</ul>
         <div className="grid grid-cols-12 gap-3">
           <a
-            href={`${clientBaseUrl}/auth/login`}
+            href={i18nClientHref(
+              `${clientBaseUrl}/auth/login`,
+              currentLocale.locale
+            )}
             className="msph-mobile-nav__button sm:col-span-6">
             {additionalTranslations.signIn}
           </a>
           <a
-            href={`${clientBaseUrl}/auth/register`}
+            href={i18nClientHref(
+              `${clientBaseUrl}/auth/register`,
+              currentLocale.locale
+            )}
             className="msph-mobile-nav__button--outline sm:col-span-6">
             {additionalTranslations.signUp}
           </a>
           <a
-            href={clientBaseUrl}
+            href={i18nClientHref(clientBaseUrl!, currentLocale.locale)}
             className="msph-mobile-nav__button border-msph-primary-dark bg-msph-primary-dark text-msph-primary-light">
             {additionalTranslations.openApp}
           </a>
