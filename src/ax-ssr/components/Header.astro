@@ -185,12 +185,12 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
           currentPage={Astro.url}
           currentLocale={locale}
           additionalTranslations={additionalTranslations}
-          foreground="text-msph-primary-light"
+          foreground={foreground}
         />
       </div>
     </div>
   </header>
-  <div class:list={['msph_ratio-container mt-3 mb-5 px-3', foreground]}>
+  <div class:list={['msph_ratio-container mt-12 mb-5 px-3', foreground]}>
     <slot />
   </div>
 </div>

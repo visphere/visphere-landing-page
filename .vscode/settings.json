@@ -59,6 +59,8 @@
     {
       "language": "*",
       "begin": "/*",
+      "prefix": " * ",
+      "end": " */",
       "lineLength": 64
     }
   ],

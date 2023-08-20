@@ -3,8 +3,8 @@
  * Silesian University of Technology
  *
  *   File name: MobileNav.tsx
- *   Created at: 2023-08-17, 23:17:24
- *   Last updated at: 2023-08-17, 23:17:24
+ *   Created at: 2023-08-20, 16:36:03
+ *   Last updated at: 2023-08-21, 00:02:48
  *
  *   Project name: moonsphere
  *   Module name: moonsphere-landing-page
@@ -78,6 +78,13 @@ const MobileNav: React.FC<Props> = ({
   );
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        enableBodyScroll(document.documentElement);
+      } else if (isVisible) {
+        disableBodyScroll(document.documentElement);
+      }
+    };
     if (enableScrollRef.current) {
       if (isVisible) {
         disableBodyScroll(document.documentElement);
@@ -85,6 +92,10 @@ const MobileNav: React.FC<Props> = ({
         enableBodyScroll(document.documentElement);
       }
     }
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [isVisible]);
 
   return (
@@ -94,7 +105,7 @@ const MobileNav: React.FC<Props> = ({
         transition={{ ease: 'easeInOut' }}
         variants={variants}
         ref={enableScrollRef}
-        className="msph-slide-nav__container">
+        className="msph-slide-nav__container top-0 z-50">
         <div className="flex justify-between items-center">
           <a href={i18nHref('/', lang)} className="flex gap-2">
             <img src={logoImagePath} alt="" width={30} height={30} />
