@@ -37,3 +37,7 @@ export const i18nSeoHref = (originalUrl: string, lang: string): string => {
   }
   return `${originalUrl}/${lang}`;
 };
+
+export const i18nClientHref = (originalUrl: string, lang: string): string => {
+  return `${originalUrl}?lang=${lang}`;
+};

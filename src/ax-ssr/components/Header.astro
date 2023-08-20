@@ -28,7 +28,7 @@ import MobileNav from '~/ax-csr/components/MobileNav';
 import SlideHeader from '~/ax-csr/components/SlideHeader';
 import { environment } from '~/env/environment';
 import { useTranslationsSSR } from '~/i18n/translations';
-import { i18nHref } from '~/i18n/url-parser';
+import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
 
 const locale = getSafetyLocaleSSR(Astro.url);
@@ -131,7 +131,10 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
         <div class:list={['hidden lg:flex gap-4', foreground]}>
           <div class="flex gap-x-2">
             <a
-              href={`${clientBaseUrl}/auth/login`}
+              href={i18nClientHref(
+                `${clientBaseUrl}/auth/login`,
+                locale.locale
+              )}
               class:list={[
                 'hidden xl:block msph-slide-nav__button',
                 signInButton?.bg || 'bg-msph-primary-tint',
@@ -141,7 +144,10 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
               {additionalTranslations.signIn}
             </a>
             <a
-              href={`${clientBaseUrl}/auth/register`}
+              href={i18nClientHref(
+                `${clientBaseUrl}/auth/register`,
+                locale.locale
+              )}
               class:list={[
                 'msph-slide-nav__button--outline',
                 signUpButton?.bg || 'bg-transparent',
@@ -153,7 +159,7 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
           </div>
           <div class="flex gap-x-2">
             <a
-              href={clientBaseUrl}
+              href={i18nClientHref(clientBaseUrl!, locale.locale)}
               class:list={[
                 'msph-slide-nav__button msph-slide-nav__button--inverse',
                 openAppButton?.bg || 'bg-msph-primary-dark',
