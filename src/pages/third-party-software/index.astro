@@ -23,25 +23,60 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
+import InteractiveLibraries from '~/ax-csr/components/InteractiveLibraries';
 import { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
+import { environment } from '~/env/environment';
 import { useTranslationsSSR } from '~/i18n/translations';
-import { i18nHref } from '~/i18n/url-parser';
+import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
 import MainLayout from '~/layouts/main-layout.astro';
 
-const { lang } = getSafetyLocaleSSR(Astro.url);
+const { lang, locale } = getSafetyLocaleSSR(Astro.url);
 const t = useTranslationsSSR('msph.landingPage.thirdPartySoftware.pageContent');
 
+const { clientBaseUrl } = environment;
 const headerVariant: PageHeaderVariant = {};
 ---
 
 <MainLayout i18nPageId="thirdPartySoftware" headerVariant={headerVariant}>
-  <div slot="headerContent">HEADER CONTENT</div>
+  <div slot="headerContent">
+    <h1 class="msph-root-header">
+      {t('header')}
+    </h1>
+    <p class="mb-3">
+      {t('paragraph1')}
+      <a href={i18nHref('/licenses', lang)} class="msph-primary-href"
+        >{t('belowLink')}</a
+      >.
+    </p>
+    <p class="mb-3">
+      {t('paragraph2')}
+      <a href={i18nHref('/about', lang)} class="msph-primary-href"
+        >{t('belowLink')}</a
+      >.
+    </p>
+  </div>
   <div slot="mainContent">
-    <h1>THIRD-PARTY SOFTWARE PAGE</h1>
-    <div class="my-3">
-      <b>{t('testProperty')}</b>
-    </div>
-    <a href={i18nHref('/', lang)}>GO TO ROOT</a>
+    <section class="bg-black text-white overflow-hidden">
+      <div class="msph_ratio-container px-3 h-[800px] overflow-hidden">
+        <InteractiveLibraries client:load />
+      </div>
+    </section>
+    <section class="msph_ratio-container my-10 sm:my-20 px-3">
+      <p class="text-2xl md:text-3xl font-extrabold text-center mb-7">
+        {t('areYouLost')}
+      </p>
+      <div
+        class="flex flex-col gap-y-2 sm:gap-y-0 sm:flex-row justify-center gap-x-4">
+        <a href={i18nHref('/download', lang)} class="msph-download-app-button">
+          {t('downloadApp')}</a
+        >
+        <a
+          href={i18nClientHref(clientBaseUrl!, locale)}
+          class="msph-open-app-in-browser-button">
+          {t('openAppInBrowser')}</a
+        >
+      </div>
+    </section>
   </div>
 </MainLayout>
