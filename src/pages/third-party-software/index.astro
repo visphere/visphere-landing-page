@@ -40,10 +40,10 @@ type LibraryData = {
 const { lang, locale } = getSafetyLocaleSSR(Astro.url);
 const t = useTranslationsSSR('msph.landingPage.thirdPartySoftware.pageContent');
 
-const { clientBaseUrl, contentDistributorBaseUrl: cdnBaseUrl } = environment;
+const { clientBaseUrl, contentDistributorBaseXHR: cdnBaseXHR } = environment;
 
 const { data: libsData } = await axios.get(
-  `${cdnBaseUrl}/static/misc/libraries.json`
+  `${cdnBaseXHR}/static/misc/libraries.json`
 );
 
 const headerContent = `${t('totalLibraries').replace(
