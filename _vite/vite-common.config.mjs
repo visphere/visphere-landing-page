@@ -73,7 +73,9 @@ export default ({
     },
     integrations: [
       tailwind(),
-      react(),
+      react({
+        experimentalReactChildren: true,
+      }),
       i18n({
         locales: availableLocales.reduce((acc, locale) => {
           acc[locale.id] = locale.value;

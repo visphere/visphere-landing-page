@@ -23,6 +23,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
+import axios from 'axios';
 import InteractiveLibraries from '~/ax-csr/components/InteractiveLibraries';
 import { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
 import { environment } from '~/env/environment';
@@ -31,10 +32,25 @@ import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
 import MainLayout from '~/layouts/main-layout.astro';
 
+type LibraryData = {
+  name: string;
+  repoUrl: string;
+};
+
 const { lang, locale } = getSafetyLocaleSSR(Astro.url);
 const t = useTranslationsSSR('msph.landingPage.thirdPartySoftware.pageContent');
 
-const { clientBaseUrl } = environment;
+const { clientBaseUrl, contentDistributorBaseUrl: cdnBaseUrl } = environment;
+
+const { data: libsData } = await axios.get(
+  `${cdnBaseUrl}/static/misc/libraries.json`
+);
+
+const headerContent = `${t('totalLibraries').replace(
+  '{libsCount}',
+  libsData.length
+)}`;
+
 const headerVariant: PageHeaderVariant = {};
 ---
 
@@ -57,9 +73,24 @@ const headerVariant: PageHeaderVariant = {};
     </p>
   </div>
   <div slot="mainContent">
-    <section class="bg-black text-white overflow-hidden">
+    <section class="bg-gray-950 text-white overflow-hidden">
       <div class="msph_ratio-container px-3 h-[800px] overflow-hidden">
-        <InteractiveLibraries client:load />
+        <InteractiveLibraries client:load headerContent={headerContent}>
+          {
+            libsData.map(({ name, repoUrl }: LibraryData) => (
+              <li class="flex sm:odd:justify-end sm:even:justify-start">
+                <a
+                  href={repoUrl}
+                  title={name}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="truncate hover:text-gray-300 text-xl">
+                  {name}
+                </a>
+              </li>
+            ))
+          }
+        </InteractiveLibraries>
       </div>
     </section>
     <section class="msph_ratio-container my-10 sm:my-20 px-3">
