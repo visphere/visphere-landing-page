@@ -68,11 +68,11 @@ const InteractiveLibraries: React.FC<Props> = ({
         onMouseEnter={() => setIsScrolling(false)}
         onMouseLeave={() => setIsScrolling(true)}>
         <div className="absolute top-0 left-0 w-full">
-          <InteractiveSeparator symmetricLength={11} mirror />
+          <InteractiveSeparator symmetricLength={5} mirror />
           <ul ref={listRef} className="msph-interactive-libraries__list">
             {children}
           </ul>
-          <InteractiveSeparator symmetricLength={11} />
+          <InteractiveSeparator symmetricLength={5} />
           <div className="mt-20 mb-28 flex justify-center">
             <InteractiveButton clickCallback={handleMoveToTop}>
               {'/\\'}
