@@ -23,18 +23,10 @@
  * governing permissions and limitations under the license.
  */
 import * as React from 'react';
-import { type JSX, useState } from 'react';
+import { useState } from 'react';
+import type { JSX, ReactNode } from 'react';
 import clsx from 'clsx';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import {
-  AdditionalTranslations,
-  HeaderLink,
-} from '~/ax-ssr/components/Header.astro';
-import { environment } from '~/env/environment';
-import { ILocale } from '~/i18n/types';
-import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
-import ChangeLang from './ChangeLang';
-import MobileNav from './MobileNav';
 
 const variants = {
   slideDown: { opacity: 1, top: '10px' },
@@ -44,36 +36,12 @@ const variants = {
 const TRIGGER_Y_POS_PX = 50;
 
 type Props = {
-  currentLocale: ILocale;
-  currentPage: URL;
-  headerLinks: HeaderLink[];
-  additionalTranslations: AdditionalTranslations;
+  children: ReactNode;
 };
 
-const SlideHeader: React.FC<Props> = ({
-  currentLocale,
-  currentPage,
-  headerLinks,
-  additionalTranslations,
-}): JSX.Element => {
-  const { lang } = currentLocale;
-  const { clientBaseUrl, contentDistributorBaseUrl: cdnUrl } = environment;
-  const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
-
+const SlideHeader: React.FC<Props> = ({ children }): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const { scrollY } = useScroll();
-
-  const generatedFullSizeHeaderLinks: JSX.Element[] = headerLinks.map(
-    ({ link, translation }) => (
-      <li key={link}>
-        <a
-          href={i18nHref(`/${link}`, lang)}
-          className="hover:underline font-medium block">
-          {translation}
-        </a>
-      </li>
-    )
-  );
 
   useMotionValueEvent(scrollY, 'change', latest => {
     setIsVisible(latest > TRIGGER_Y_POS_PX);
@@ -88,64 +56,7 @@ const SlideHeader: React.FC<Props> = ({
         'fixed w-full top-[80px] px-3 z-50',
         scrollY.getVelocity() <= TRIGGER_Y_POS_PX && 'opacity-0 -top-y-[25px]'
       )}>
-      <div className="msph_ratio-container bg-white shadow-md px-6 py-4 rounded-[25px]">
-        <div className="flex justify-between items-center w-full">
-          <div className="flex gap-10 items-center">
-            <a href={i18nHref('/', lang)} className="flex gap-2">
-              <img src={logoImagePath} alt="" width={30} height={30} />
-              <h1 className="font-logo text-2xl leading-[28px] font-medium">
-                MoonSphere
-              </h1>
-            </a>
-            <ul className="flex gap-4 hidden md:flex">
-              {generatedFullSizeHeaderLinks}
-            </ul>
-          </div>
-          <div className="flex gap-3 items-center">
-            <div className="hidden lg:flex gap-4">
-              <div className="flex gap-x-2">
-                <a
-                  href={i18nClientHref(
-                    `${clientBaseUrl}/auth/login`,
-                    currentLocale.locale
-                  )}
-                  className="hidden xl:block msph-slide-nav__button">
-                  {additionalTranslations.signIn}
-                </a>
-                <a
-                  href={i18nClientHref(
-                    `${clientBaseUrl}/auth/register`,
-                    currentLocale.locale
-                  )}
-                  className="msph-slide-nav__button--outline">
-                  {additionalTranslations.signUp}
-                </a>
-              </div>
-              <div className="flex gap-x-2">
-                <a
-                  href={i18nClientHref(clientBaseUrl!, currentLocale.locale)}
-                  className="msph-slide-nav__button border-msph-primary-dark bg-msph-primary-dark">
-                  {additionalTranslations.openApp}
-                </a>
-                <ChangeLang
-                  currentLocale={currentLocale}
-                  currentPage={currentPage}
-                  hideLabels={true}
-                  theme="light"
-                  position="bottom"
-                />
-              </div>
-            </div>
-            <MobileNav
-              lang={lang}
-              headerLinks={headerLinks}
-              currentPage={currentPage}
-              currentLocale={currentLocale}
-              additionalTranslations={additionalTranslations}
-            />
-          </div>
-        </div>
-      </div>
+      {children}
     </motion.header>
   );
 };

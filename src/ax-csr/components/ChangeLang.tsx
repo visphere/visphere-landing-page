@@ -23,7 +23,7 @@
  * governing permissions and limitations under the license.
  */
 import * as React from 'react';
-import { type JSX } from 'react';
+import type { JSX, ReactNode } from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { CaretDownFill } from 'react-bootstrap-icons';
@@ -33,40 +33,29 @@ import { ILocale } from '~/i18n/types';
 import useUnfocusClose from '../hooks/useUnfocusClose';
 
 type Props = {
-  currentPage: URL;
   currentLocale: ILocale;
   position?: 'top' | 'bottom';
   hideLabels?: boolean;
   theme?: 'light' | 'dark';
+  children: ReactNode;
 };
 
 const ChangeLang: React.FC<Props> = ({
-  currentPage,
   currentLocale,
   position = 'top',
   hideLabels,
   theme = 'dark',
+  children,
 }): JSX.Element => {
   const [buttonRef, isOpen, setIsOpen] = useUnfocusClose<HTMLButtonElement>({
     initialActive: false,
   });
 
-  const {
-    contentDistributorBaseUrl: cdnPatch,
-    i18nLocalesMap,
-    i18nDefaultLocale,
-  } = environment;
+  const { contentDistributorBaseUrl: cdnPatch } = environment;
   const { value, name } = getUiTranslationCaptions(currentLocale.locale);
 
   const handleToggleMenuVisibility = (): void => {
     setIsOpen(prevValue => !prevValue);
-  };
-
-  const generateLangUrl = (lang: string): string => {
-    if (lang === i18nDefaultLocale) {
-      return currentPage.pathname.replace(/\/(en|pl)/i, '') || '/';
-    }
-    return `${lang}${currentPage.pathname}`;
   };
 
   const variants = {
@@ -77,30 +66,6 @@ const ChangeLang: React.FC<Props> = ({
       display: 'none',
     },
   };
-
-  const listLangElements: JSX.Element[] = i18nLocalesMap.map(
-    ({ id, name, value }) => (
-      <li key={value}>
-        <a
-          href={generateLangUrl(id)}
-          className={clsx(
-            'msph_footer__select-list-element',
-            theme === 'dark' ? 'hover:bg-gray-600' : 'hover:bg-gray-200',
-            value === currentLocale.locale &&
-              'msph_footer__select-list-element--active'
-          )}>
-          <img
-            src={`${cdnPatch}/static/icon/lang/${value}.png`}
-            width="23"
-            height="23"
-            className="me-2"
-            alt=""
-          />
-          <p>{name}</p>
-        </a>
-      </li>
-    )
-  );
 
   return (
     <div className="relative text-sm">
@@ -129,7 +94,7 @@ const ChangeLang: React.FC<Props> = ({
             : '-translate-y-[15%] left-0 bottom-full',
           theme === 'dark' ? 'bg-msph-primary-dark' : 'bg-msph-primary-light'
         )}>
-        {listLangElements}
+        {children}
       </motion.ul>
     </div>
   );

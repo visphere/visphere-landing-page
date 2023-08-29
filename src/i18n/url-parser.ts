@@ -41,3 +41,13 @@ export const i18nSeoHref = (originalUrl: string, lang: string): string => {
 export const i18nClientHref = (originalUrl: string, lang: string): string => {
   return `${originalUrl}?lang=${lang}`;
 };
+
+export const i18nWithoutLangPrefixHref = (
+  originalUrl: string,
+  lang: string
+): string => {
+  if (lang === environment.i18nDefaultLocale) {
+    return originalUrl.replace(/\/(en|pl)/i, '') || '/';
+  }
+  return `${lang}${originalUrl}`;
+};
