@@ -1,0 +1,175 @@
+---
+/*
+ * Copyright (c) 2023 by MILOSZ GILGA <https://miloszgilga.pl>
+ * Silesian University of Technology
+ *
+ *   File name: HeaderLogoWithNav.astro
+ *   Created at: 2023-08-29, 17:29:49
+ *   Last updated at: 2023-08-29, 17:29:49
+ *
+ *   Project name: moonsphere
+ *   Module name: moonsphere-landing-page
+ *
+ * This project is a part of "MoonSphere" instant messenger system. This system is a part of
+ * completing an engineers degree in computer science at Silesian University of Technology.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at
+ *
+ *   <http://www.apache.org/license/LICENSE-2.0>
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the license.
+ */
+import { environment } from '~/env/environment';
+import { useTranslationsSSR } from '~/i18n/translations';
+import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
+import { getSafetyLocaleSSR } from '~/i18n/utils';
+import LangPicker from './LangPicker.astro';
+import { PageHeaderButon } from './Header.astro';
+import MobileNav from '~/ax-csr/components/MobileNav';
+
+type Props = {
+  foreground?: string;
+  signInButton?: PageHeaderButon;
+  signUpButton?: PageHeaderButon;
+  openAppButton?: PageHeaderButon;
+  langPickedTheme?: 'light' | 'dark';
+  fontWeight?: 'font-light' | 'font-medium';
+};
+
+type HeaderLink = {
+  link: string;
+  translation: string;
+};
+
+const {
+  foreground = 'text-msph-primary-dark',
+  signInButton,
+  signUpButton,
+  openAppButton,
+  langPickedTheme = 'light',
+  fontWeight = 'font-medium',
+} = Astro.props as Props;
+
+const { lang, locale } = getSafetyLocaleSSR(Astro.url);
+const t = useTranslationsSSR('msph.webCommon.footer');
+
+const { contentDistributorBaseUrl: cdnUrl } = environment;
+
+const headerLinks: HeaderLink[] = [
+  'about',
+  'download',
+  'brand',
+  'tutorial',
+].map(link => ({
+  link,
+  translation: t(`headers.application.links.${link}`),
+}));
+
+const { clientBaseUrl } = environment;
+const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
+---
+
+<div class="flex justify-between items-center w-full">
+  <div class:list={['flex gap-10 items-center', foreground]}>
+    <a href={i18nHref('/', lang)} class="flex gap-2">
+      <img src={logoImagePath} alt="" width={30} height={30} />
+      <h1 class="font-logo text-2xl leading-[28px]">MoonSphere</h1>
+    </a>
+    <ul class="flex gap-4 hidden md:flex">
+      {
+        headerLinks.map(({ link, translation }) => (
+          <li>
+            <a
+              href={i18nHref(`/${link}`, lang)}
+              class:list={['hover:underline block', fontWeight]}>
+              {translation}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="flex gap-3 items-center">
+    <div class:list={['hidden lg:flex gap-4', foreground]}>
+      <div class="flex gap-x-2">
+        <a
+          href={i18nClientHref(`${clientBaseUrl}/auth/login`, locale)}
+          class:list={[
+            'hidden xl:block msph-slide-nav__button',
+            signInButton?.bg || 'bg-msph-primary-tint',
+            signInButton?.fg || 'text-msph-primary-light',
+            signInButton?.border || 'border-msph-primary-tint',
+          ]}>
+          {t(`headers.start.links.login`)}
+        </a>
+        <a
+          href={i18nClientHref(`${clientBaseUrl}/auth/register`, locale)}
+          class:list={[
+            'msph-slide-nav__button--outline',
+            signUpButton?.bg || 'bg-transparent',
+            signUpButton?.fg || 'text-msph-primary-tint',
+            signUpButton?.border || 'border-msph-primary-tint',
+          ]}>
+          {t(`headers.start.links.register`)}
+        </a>
+      </div>
+      <div class="flex gap-x-2">
+        <a
+          href={i18nClientHref(clientBaseUrl!, locale)}
+          class:list={[
+            'msph-slide-nav__button msph-slide-nav__button--inverse',
+            openAppButton?.bg || 'bg-msph-primary-dark',
+            openAppButton?.fg || 'text-msph-primary-light',
+            openAppButton?.border || 'border-msph-primary-dark',
+          ]}>
+          {t(`openAppButton`)}
+        </a>
+        <LangPicker
+          theme={langPickedTheme}
+          hideLabels={true}
+          position="bottom"
+        />
+      </div>
+    </div>
+    <slot />
+    <div class:list={['block sm:hidden', foreground]}>
+      <LangPicker theme={langPickedTheme} hideLabels={true} position="bottom" />
+    </div>
+    <MobileNav client:load lang={lang} foreground={foreground}>
+      <ul class="flex-grow mt-5">
+        {
+          headerLinks.map(({ link, translation }) => (
+            <li>
+              <a
+                href={i18nHref(`/${link}`, lang)}
+                class="font-semibold block py-4 text-xl hover:underline">
+                {translation}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="grid grid-cols-12 gap-3">
+        <a
+          href={i18nClientHref(`${clientBaseUrl}/auth/login`, locale)}
+          class="msph-mobile-nav__button sm:col-span-6">
+          {t(`headers.start.links.login`)}
+        </a>
+        <a
+          href={i18nClientHref(`${clientBaseUrl}/auth/register`, locale)}
+          class="msph-mobile-nav__button--outline sm:col-span-6">
+          {t(`headers.start.links.register`)}
+        </a>
+        <a
+          href={i18nClientHref(clientBaseUrl!, locale)}
+          class="msph-mobile-nav__button border-msph-primary-dark bg-msph-primary-dark text-msph-primary-light">
+          {t(`openAppButton`)}
+        </a>
+      </div>
+    </MobileNav>
+  </div>
+</div>

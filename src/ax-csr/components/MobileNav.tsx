@@ -22,20 +22,15 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
-import { type JSX, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import type { JSX, ReactNode } from 'react';
 import * as React from 'react';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { List, XLg } from 'react-bootstrap-icons';
-import {
-  AdditionalTranslations,
-  HeaderLink,
-} from '~/ax-ssr/components/Header.astro';
 import { environment } from '~/env/environment';
-import { ILocale } from '~/i18n/types';
-import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
-import ChangeLang from './ChangeLang';
+import { i18nHref } from '~/i18n/url-parser';
+import useScrollEnabledOnResize from '../hooks/useScrollEnabledOnResize';
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -44,59 +39,22 @@ const variants = {
 
 type Props = {
   lang: string;
-  currentLocale: ILocale;
-  currentPage: URL;
-  headerLinks: HeaderLink[];
-  additionalTranslations: AdditionalTranslations;
   foreground?: string;
+  children: ReactNode;
 };
 
 const MobileNav: React.FC<Props> = ({
   lang,
-  currentLocale,
-  currentPage,
-  headerLinks,
-  additionalTranslations,
   foreground = 'text-msph-primary-dark',
+  children,
 }): JSX.Element => {
-  const { clientBaseUrl, contentDistributorBaseUrl: cdnUrl } = environment;
+  const { contentDistributorBaseUrl: cdnUrl } = environment;
   const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
 
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const enableScrollRef = useRef<HTMLElement>(null);
 
-  const generatedHeaderLinks: JSX.Element[] = headerLinks.map(
-    ({ link, translation }) => (
-      <li key={link}>
-        <a
-          href={i18nHref(`/${link}`, lang)}
-          className="font-semibold block py-4 text-xl hover:underline">
-          {translation}
-        </a>
-      </li>
-    )
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1024) {
-        enableBodyScroll(document.documentElement);
-      } else if (isVisible) {
-        disableBodyScroll(document.documentElement);
-      }
-    };
-    if (enableScrollRef.current) {
-      if (isVisible) {
-        disableBodyScroll(document.documentElement);
-      } else {
-        enableBodyScroll(document.documentElement);
-      }
-    }
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [isVisible]);
+  useScrollEnabledOnResize({ elementRef: enableScrollRef, isVisible });
 
   return (
     <>
@@ -113,43 +71,11 @@ const MobileNav: React.FC<Props> = ({
               MoonSphere
             </h1>
           </a>
-          <div className="flex gap-x-5">
-            <ChangeLang
-              currentLocale={currentLocale}
-              currentPage={currentPage}
-              hideLabels={true}
-              theme="light"
-              position="bottom"
-            />
-            <button className="p-2" onClick={() => setIsVisible(false)}>
-              <XLg width={20} height={20} />
-            </button>
-          </div>
+          <button className="p-2" onClick={() => setIsVisible(false)}>
+            <XLg width={20} height={20} />
+          </button>
         </div>
-        <ul className="flex-grow mt-5">{generatedHeaderLinks}</ul>
-        <div className="grid grid-cols-12 gap-3">
-          <a
-            href={i18nClientHref(
-              `${clientBaseUrl}/auth/login`,
-              currentLocale.locale
-            )}
-            className="msph-mobile-nav__button sm:col-span-6">
-            {additionalTranslations.signIn}
-          </a>
-          <a
-            href={i18nClientHref(
-              `${clientBaseUrl}/auth/register`,
-              currentLocale.locale
-            )}
-            className="msph-mobile-nav__button--outline sm:col-span-6">
-            {additionalTranslations.signUp}
-          </a>
-          <a
-            href={i18nClientHref(clientBaseUrl!, currentLocale.locale)}
-            className="msph-mobile-nav__button border-msph-primary-dark bg-msph-primary-dark text-msph-primary-light">
-            {additionalTranslations.openApp}
-          </a>
-        </div>
+        {children}
       </motion.nav>
       <button
         className={clsx(`flex items-center p-1 lg:hidden`, foreground)}

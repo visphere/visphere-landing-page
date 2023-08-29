@@ -23,16 +23,8 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the license.
  */
-import ChangeLang from '~/ax-csr/components/ChangeLang';
-import MobileNav from '~/ax-csr/components/MobileNav';
 import SlideHeader from '~/ax-csr/components/SlideHeader';
-import { environment } from '~/env/environment';
-import { useTranslationsSSR } from '~/i18n/translations';
-import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
-import { getSafetyLocaleSSR } from '~/i18n/utils';
-
-const locale = getSafetyLocaleSSR(Astro.url);
-const t = useTranslationsSSR('msph.webCommon.footer');
+import HeaderLogoWithNav from './HeaderLogoWithNav.astro';
 
 export type PageHeaderButon = {
   fg?: string;
@@ -64,131 +56,23 @@ const {
   langPickedTheme = 'light',
   fontWeight = 'font-medium',
 } = headerVariant;
-
-export type HeaderLink = {
-  link: string;
-  translation: string;
-};
-
-export type AdditionalTranslations = {
-  signIn: string;
-  signUp: string;
-  openApp: string;
-};
-
-const headerLinks: HeaderLink[] = [
-  'about',
-  'download',
-  'brand',
-  'tutorial',
-].map(link => ({
-  link,
-  translation: t(`headers.application.links.${link}`),
-}));
-
-const additionalTranslations: AdditionalTranslations = {
-  signIn: t(`headers.start.links.login`),
-  signUp: t(`headers.start.links.register`),
-  openApp: t(`openAppButton`),
-};
-
-const { lang } = locale;
-const { clientBaseUrl, contentDistributorBaseUrl: cdnUrl } = environment;
-
-const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
 ---
 
-<SlideHeader
-  client:visible
-  currentLocale={locale}
-  currentPage={Astro.url}
-  headerLinks={headerLinks}
-  additionalTranslations={additionalTranslations}
-/>
+<SlideHeader client:load>
+  <div class="msph_ratio-container bg-white shadow-md px-6 py-4 rounded-[25px]">
+    <HeaderLogoWithNav />
+  </div>
+</SlideHeader>
 <div class:list={['w-100', background]}>
   <header class="msph_ratio-container py-4 px-3 lg:py-7">
-    <div class="flex justify-between items-center w-full">
-      <div class:list={['flex gap-10 items-center', foreground]}>
-        <a href={i18nHref('/', lang)} class="flex gap-2">
-          <img src={logoImagePath} alt="" width={30} height={30} />
-          <h1 class="font-logo text-2xl leading-[28px]">MoonSphere</h1>
-        </a>
-        <ul class="flex gap-4 hidden md:flex">
-          {
-            headerLinks.map(({ link, translation }) => (
-              <li>
-                <a
-                  href={i18nHref(`/${link}`, lang)}
-                  class:list={['hover:underline block', fontWeight]}>
-                  {translation}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="flex gap-3 items-center">
-        <div class:list={['hidden lg:flex gap-4', foreground]}>
-          <div class="flex gap-x-2">
-            <a
-              href={i18nClientHref(
-                `${clientBaseUrl}/auth/login`,
-                locale.locale
-              )}
-              class:list={[
-                'hidden xl:block msph-slide-nav__button',
-                signInButton?.bg || 'bg-msph-primary-tint',
-                signInButton?.fg || 'text-msph-primary-light',
-                signInButton?.border || 'border-msph-primary-tint',
-              ]}>
-              {additionalTranslations.signIn}
-            </a>
-            <a
-              href={i18nClientHref(
-                `${clientBaseUrl}/auth/register`,
-                locale.locale
-              )}
-              class:list={[
-                'msph-slide-nav__button--outline',
-                signUpButton?.bg || 'bg-transparent',
-                signUpButton?.fg || 'text-msph-primary-tint',
-                signUpButton?.border || 'border-msph-primary-tint',
-              ]}>
-              {additionalTranslations.signUp}
-            </a>
-          </div>
-          <div class="flex gap-x-2">
-            <a
-              href={i18nClientHref(clientBaseUrl!, locale.locale)}
-              class:list={[
-                'msph-slide-nav__button msph-slide-nav__button--inverse',
-                openAppButton?.bg || 'bg-msph-primary-dark',
-                openAppButton?.fg || 'text-msph-primary-light',
-                openAppButton?.border || 'border-msph-primary-dark',
-              ]}>
-              {additionalTranslations.openApp}
-            </a>
-            <ChangeLang
-              client:visible
-              currentLocale={locale}
-              currentPage={Astro.url}
-              hideLabels={true}
-              theme={langPickedTheme}
-              position="bottom"
-            />
-          </div>
-        </div>
-        <MobileNav
-          client:visible
-          lang={lang}
-          headerLinks={headerLinks}
-          currentPage={Astro.url}
-          currentLocale={locale}
-          additionalTranslations={additionalTranslations}
-          foreground={foreground}
-        />
-      </div>
-    </div>
+    <HeaderLogoWithNav
+      foreground={foreground}
+      signInButton={signInButton}
+      signUpButton={signUpButton}
+      openAppButton={openAppButton}
+      fontWeight={fontWeight}
+      langPickedTheme={langPickedTheme}
+    />
   </header>
   <div class:list={['msph_ratio-container mt-12 mb-5 px-3', foreground]}>
     <slot />

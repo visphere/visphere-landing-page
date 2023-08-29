@@ -24,11 +24,11 @@
  * governing permissions and limitations under the license.
  */
 import * as changeCase from 'change-case';
-import ChangeLang from '~/ax-csr/components/ChangeLang';
 import { environment } from '~/env/environment';
 import { useTranslationsSSR } from '~/i18n/translations';
 import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
+import LangPicker from './LangPicker.astro';
 
 const { lang, locale } = getSafetyLocaleSSR(Astro.url);
 const t = useTranslationsSSR('msph.webCommon.footer');
@@ -70,11 +70,7 @@ const changeCamelToParamCase = (link: string): string =>
         {t('description')}
       </p>
       <div class="w-full">
-        <ChangeLang
-          client:visible
-          currentLocale={getSafetyLocaleSSR(Astro.url)}
-          currentPage={Astro.url}
-        />
+        <LangPicker />
       </div>
     </div>
     <div class="lg:col-span-1 hidden sm:block"></div>
