@@ -8,10 +8,13 @@
     "docker:prod": "astro build --config ./_vite/vite-docker-prod.config.mjs",
     "preview": "astro preview --config ./_vite/vite-server.config.mjs",
     "astro": "astro",
-    "configure:husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
     "lint:check": "npx eslint src/**/*.{ts,tsx,astro}",
     "lint:fix": "npx eslint src/**/*.{ts,tsx,astro} --fix",
-    "format": "npx prettier **/*.{ts,tsx,js,mjs,cjs,astro,json} --write"
+    "format": "npx prettier **/*.{ts,tsx,js,mjs,cjs,astro,json} --write",
+    "types:check": "npx tsc --noEmit",
+    "husky:add-pre-commit": "npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
+    "husky:add-pre-push": "npx husky add .husky/pre-push \"yarn run types:check\"",
+    "configure:husky": "npx husky install && yarn run husky:add-pre-commit && yarn run husky:add-pre-push"
   },
   "private": true,
   "author": {
@@ -28,7 +31,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run types:check"
     }
   },
   "dependencies": {
