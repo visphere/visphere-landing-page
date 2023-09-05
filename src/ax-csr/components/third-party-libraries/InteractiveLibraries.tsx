@@ -25,7 +25,7 @@
 import * as React from 'react';
 import { useRef } from 'react';
 import type { JSX, ReactNode } from 'react';
-import useRollingContent from '../hooks/useRollingContent';
+import useRollingContent from '../../hooks/useRollingContent';
 import InteractiveButton from './InteractiveButton';
 import InteractiveSeparator from './InteractiveSeparator';
 
