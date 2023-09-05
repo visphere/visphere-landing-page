@@ -10,6 +10,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
+    "skipLibCheck": true,
     "paths": {
       "~/ax-csr/*": ["src/ax-csr/*"],
       "~/ax-ssr/*": ["src/ax-ssr/*"],
