@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2023 by MoonSphere Systems
- * Originally developed by Milosz Gilga <https://miloszgilga.pl>
+ * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import { APIContext, MiddlewareNext } from 'astro';
 import { i18nMiddleware } from 'astro-i18n-aut';
