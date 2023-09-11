@@ -36,10 +36,10 @@ const { contentDistributorBaseUrl: cdnUrl, i18nLocalesMap } = environment;
         <a
           href={i18nWithoutLangPrefixHref(Astro.url.pathname, id)}
           class:list={[
-            'msph_footer__select-list-element',
+            'msph-footer__select-list-element',
             theme === 'dark' ? 'hover:bg-gray-600' : 'hover:bg-gray-200',
             value === locale.locale &&
-              'msph_footer__select-list-element--active',
+              'msph-footer__select-list-element--active',
           ]}>
           <img
             src={`${cdnUrl}/static/icon/lang/${value}.png`}

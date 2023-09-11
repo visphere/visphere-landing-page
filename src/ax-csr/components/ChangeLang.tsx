@@ -52,7 +52,7 @@ const ChangeLang: React.FC<Props> = ({
       <button
         ref={buttonRef}
         onClick={handleToggleMenuVisibility}
-        className="msph_footer__select-list-button h-full">
+        className="msph-footer__select-list-button h-full">
         <img
           src={`${cdnPatch}/static/icon/lang/${value}.png`}
           width="23"
@@ -68,7 +68,7 @@ const ChangeLang: React.FC<Props> = ({
         transition={{ ease: 'easeInOut' }}
         variants={variants}
         className={clsx(
-          'msph_footer__select-list-container z-0 opacity-0',
+          'msph-footer__select-list-container z-0 opacity-0',
           position === 'bottom'
             ? 'translate-y-[15%] right-0 top-full mt-1 mb-0'
             : '-translate-y-[15%] left-0 bottom-full',
