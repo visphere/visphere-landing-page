@@ -1,0 +1,31 @@
+---
+/*
+ * Copyright (c) 2023 by MoonSphere Systems
+ * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
+ */
+import { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
+import LostSection from '~/ax-ssr/components/LostSection.astro';
+import { useTranslationsSSR } from '~/i18n/translations';
+import MainLayout from '~/layouts/main-layout.astro';
+
+const t = useTranslationsSSR('msph.landingPage.status.pageContent');
+
+const headerVariant: PageHeaderVariant = {};
+---
+
+<MainLayout i18nPageId="status" headerVariant={headerVariant}>
+  <div slot="headerContent">
+    <h1 class="msph-root-header">
+      {t('header')}
+    </h1>
+    <p class="mb-3">
+      {t('paragraph')}
+    </p>
+  </div>
+  <div slot="mainContent">
+    <section class="bg-gray-200 py-8">
+      <div class="msph_ratio-container px-3">APP STATUS ROOT ELEMENT</div>
+    </section>
+    <LostSection />
+  </div>
+</MainLayout>
