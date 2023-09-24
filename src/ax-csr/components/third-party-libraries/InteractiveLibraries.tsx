@@ -33,17 +33,17 @@ const InteractiveLibraries: React.FC<Props> = ({
   };
 
   return (
-    <div className="relative w-full h-full font-mono text-gray-600">
+    <div className="relative w-full h-full font-mono text-msph-gray-600">
       <div className="msph-interactive-libraries__top-gradient" />
       <div className="msph-interactive-libraries__header">
-        <p className="mt-3 text-2xl text-gray-300">
+        <p className="mt-3 text-2xl text-msph-gray-300">
           {headerContent}
           <span className="animate-ping">_</span>
         </p>
       </div>
       <div className="msph-interactive-libraries__scroll-track"></div>
       <div
-        className="msph-interactive-libraries__scroll scrollbar scrollbar-rounded scrollbar-thumb:bg-white"
+        className="msph-interactive-libraries__scroll scrollbar scrollbar-rounded scrollbar-thumb:bg-msph-light-100"
         ref={listContainerRef}
         onMouseEnter={() => setIsScrolling(false)}
         onMouseLeave={() => setIsScrolling(true)}>

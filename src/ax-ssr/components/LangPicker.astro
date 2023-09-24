@@ -37,7 +37,9 @@ const { contentDistributorBaseUrl: cdnUrl, i18nLocalesMap } = environment;
           href={i18nWithoutLangPrefixHref(Astro.url.pathname, id)}
           class:list={[
             'msph-footer__select-list-element',
-            theme === 'dark' ? 'hover:bg-gray-600' : 'hover:bg-gray-200',
+            theme === 'dark'
+              ? 'hover:bg-msph-dark-700'
+              : 'hover:bg-msph-tint-200',
             value === locale.locale &&
               'msph-footer__select-list-element--active',
           ]}>

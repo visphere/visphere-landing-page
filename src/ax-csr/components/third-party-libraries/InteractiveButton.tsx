@@ -39,7 +39,7 @@ const InteractiveButton: React.FC<Props> = ({
   return (
     <button
       onClick={clickCallback}
-      className="relative h-[50px] px-5 text-2xl bg-gray-600 text-white bg-gradient-to-t hover:-translate-y-1">
+      className="relative h-[50px] px-5 text-2xl bg-msph-gray-600 text-msph-light-100 bg-gradient-to-t hover:-translate-y-1">
       <span className="relative z-10">{children}</span>
       {generatesNotchs}
     </button>
