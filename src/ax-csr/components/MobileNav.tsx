@@ -25,7 +25,7 @@ type Props = {
 
 const MobileNav: React.FC<Props> = ({
   lang,
-  foreground = 'text-msph-primary-dark',
+  foreground = 'text-msph-dark-900',
   children,
 }): JSX.Element => {
   const { contentDistributorBaseUrl: cdnUrl } = environment;

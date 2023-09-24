@@ -13,16 +13,16 @@ const { lang } = getSafetyLocaleSSR(Astro.url);
 const t = useTranslationsSSR('msph.landingPage.about.pageContent');
 
 const headerVariant: PageHeaderVariant = {
-  background: 'bg-gray-100',
-  foreground: 'text-msph-primary-dark',
+  background: 'bg-msph-tint-100',
+  foreground: 'text-msph-dark-900',
   signUpButton: {
-    fg: 'text-msph-primary-dark',
-    border: 'border-msph-primary-dark',
+    fg: 'text-msph-dark-900',
+    border: 'border-msph-dark-900',
   },
   openAppButton: {
-    bg: 'bg-msph-primary-dark',
-    fg: 'text-msph-primary-light',
-    border: 'border-msph-primary-dark',
+    bg: 'bg-msph-dark-900',
+    fg: 'text-msph-light-100',
+    border: 'border-msph-dark-900',
   },
   fontWeight: 'font-medium',
   langPickedTheme: 'light',

@@ -26,7 +26,7 @@ type HeaderLink = {
 };
 
 const {
-  foreground = 'text-msph-primary-dark',
+  foreground = 'text-msph-dark-900',
   signInButton,
   signUpButton,
   openAppButton,
@@ -58,7 +58,7 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
   <div class:list={['flex gap-10 items-center', foreground]}>
     <a href={i18nHref('/', lang)} class="flex gap-2">
       <img src={logoImagePath} alt="" width={30} height={30} />
-      <h1 class="font-logo text-2xl leading-[28px]">MoonSphere</h1>
+      <h1 class="font-logo text-2xl font-medium leading-[28px]">MoonSphere</h1>
     </a>
     <ul class="flex gap-4 hidden md:flex">
       {
@@ -81,9 +81,9 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
           href={i18nClientHref(`${clientBaseUrl}/auth/login`, locale)}
           class:list={[
             'hidden xl:block msph-slide-nav__button',
-            signInButton?.bg || 'bg-msph-primary-tint',
-            signInButton?.fg || 'text-msph-primary-light',
-            signInButton?.border || 'border-msph-primary-tint',
+            signInButton?.bg || 'bg-msph-tint-500',
+            signInButton?.fg || 'text-msph-light-100',
+            signInButton?.border || 'border-msph-tint-500',
           ]}>
           {t(`headers.start.links.login`)}
         </a>
@@ -92,8 +92,8 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
           class:list={[
             'msph-slide-nav__button--outline',
             signUpButton?.bg || 'bg-transparent',
-            signUpButton?.fg || 'text-msph-primary-tint',
-            signUpButton?.border || 'border-msph-primary-tint',
+            signUpButton?.fg || 'text-msph-tint-500',
+            signUpButton?.border || 'border-msph-tint-500',
           ]}>
           {t(`headers.start.links.register`)}
         </a>
@@ -103,9 +103,9 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
           href={i18nClientHref(clientBaseUrl!, locale)}
           class:list={[
             'msph-slide-nav__button msph-slide-nav__button--inverse',
-            openAppButton?.bg || 'bg-msph-primary-dark',
-            openAppButton?.fg || 'text-msph-primary-light',
-            openAppButton?.border || 'border-msph-primary-dark',
+            openAppButton?.bg || 'bg-msph-dark-900',
+            openAppButton?.fg || 'text-msph-light-100',
+            openAppButton?.border || 'border-msph-dark-900',
           ]}>
           {t(`openAppButton`)}
         </a>
@@ -121,13 +121,13 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
       <LangPicker theme={langPickedTheme} hideLabels={true} position="bottom" />
     </div>
     <MobileNav client:load lang={lang} foreground={foreground}>
-      <ul class="flex-grow mt-5">
+      <ul class="flex-grow flex flex-col gap-y-3 mt-5">
         {
           headerLinks.map(({ link, translation }) => (
-            <li>
+            <li class="flex">
               <a
                 href={i18nHref(`/${link}`, lang)}
-                class="font-semibold block py-4 text-xl hover:underline">
+                class="bg-msph-tint-100 hover:bg-msph-tint-200 rounded-lg w-full py-3 px-7 text-xl">
                 {translation}
               </a>
             </li>
@@ -147,7 +147,7 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
         </a>
         <a
           href={i18nClientHref(clientBaseUrl!, locale)}
-          class="msph-mobile-nav__button border-msph-primary-dark bg-msph-primary-dark text-msph-primary-light">
+          class="msph-mobile-nav__button border-msph-dark-900 bg-msph-dark-900 text-msph-light-100">
           {t(`openAppButton`)}
         </a>
       </div>

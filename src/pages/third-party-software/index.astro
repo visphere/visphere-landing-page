@@ -54,8 +54,8 @@ const headerVariant: PageHeaderVariant = {};
     </p>
   </div>
   <div slot="mainContent">
-    <section class="bg-gray-950 text-white overflow-hidden">
-      <div class="msph_ratio-container px-3 h-[800px] overflow-hidden">
+    <section class="bg-msph-gray-950 text-msph-light-100 overflow-hidden">
+      <div class="msph-safe-container px-3 h-[800px] overflow-hidden">
         <InteractiveLibraries client:load headerContent={headerContent}>
           {
             libsData.map(({ name, repoUrl }: LibraryData) => (
@@ -65,7 +65,7 @@ const headerVariant: PageHeaderVariant = {};
                   title={name}
                   target="_blank"
                   rel="noreferrer"
-                  class="truncate hover:text-gray-300 text-xl">
+                  class="truncate hover:text-msph-gray-300 text-xl">
                   {name}
                 </a>
               </li>
