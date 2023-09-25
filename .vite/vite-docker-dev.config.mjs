@@ -9,7 +9,7 @@ import viteCommonConfig from './vite-common.config.mjs';
 export default viteCommonConfig({
   landingPageBaseUrl: `http://localhost:${process.env.ENV_MSPH_LANDING_PAGE_PORT}`,
   clientBaseUrl: `http://localhost:${process.env.ENV_MSPH_WEB_CLIENT_PORT}`,
-  cdnBaseUrl: `http://localhost:${process.env.ENV_MSPH_CONTENT_DISTRIBUTOR_PORT}`,
-  cdnBaseXHR: `http://msph-content-distributor:80`,
+  cdnBaseUrl: `http://localhost:${process.env.ENV_MSPH_STATIC_S3_PORT}`,
+  cdnBaseXHR: `http://msph-s3-static:9000`,
   isProdMode: true,
 });
