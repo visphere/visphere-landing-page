@@ -22,7 +22,6 @@
     "email": "info@moonsphere.pl",
     "url": "https://moonsphere.pl"
   },
-  "license": "Apache-2.0",
   "lint-staged": {
     "**/*.{ts,js,cjs,astro,json}": [
       "yarn run lint:fix",
