@@ -27,14 +27,18 @@ const pageTitlePrefix = i18nPageId
   ? `${pageTitle} | `
   : '';
 
-const { contentDistributorBaseUrl: cdnUrl, baseLandingUrl } = environment;
+const {
+  contentDistributorBaseUrl: cdnUrl,
+  baseLandingUrl,
+  contentDistributorBaseXHR: cdnXhr,
+} = environment;
 
 const faviconUrl = `${cdnUrl}/static/favicon/favicon-nobadge.png`;
 const seoBannerUrl = `${cdnUrl}/static/seo/og-banner-light.png`;
 
 let couldNotConnectWithCdn = false;
 try {
-  await axios.get(cdnUrl!);
+  await axios.get(`${cdnXhr!}/static`);
 } catch (err) {
   couldNotConnectWithCdn = true;
 }
@@ -44,7 +48,7 @@ try {
   <head>
     <meta charset="utf-8" />
     <title>{`${pageTitlePrefix}MoonSphere`}</title>
-    <link rel="preconnect" href={cdnUrl} />
+    <link rel="preconnect" href={`${cdnUrl}/static`} />
     <link rel="icon" type="image/png" sizes="48x48" href={faviconUrl} />
     <meta name="keywords" content={t('webCommon.metaProperty.keywords')} />
     <meta
