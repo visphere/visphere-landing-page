@@ -22,20 +22,23 @@ WORKDIR /moonsphere
 
 RUN rm -rf moonsphere-base
 
+FROM build AS prod-deps
+
+WORKDIR /moonsphere/moonsphere-landing-page
+
+RUN yarn install --prod
+
 FROM node:18.16.0-alpine
 
 LABEL maintainer="MoonSphere Systems <info@moonsphere.pl>"
 
-RUN mkdir -p msph-landing-page-content/dist
-RUN mkdir -p msph-landing-page-content/node_modules
+RUN mkdir -p msph/dist
+RUN mkdir -p msph/node_modules
 
-COPY --from=build /moonsphere/moonsphere-landing-page/package.json /msph-landing-page-content/package.json
-COPY --from=build /moonsphere/moonsphere-landing-page/yarn.lock /msph-landing-page-content/yarn.lock
-COPY --from=build /moonsphere/moonsphere-landing-page/dist/ /msph-landing-page-content/dist
+WORKDIR /msph
 
-WORKDIR /msph-landing-page-content
-
-RUN yarn install --prod
+COPY --from=prod-deps /moonsphere/moonsphere-landing-page/node_modules /msph/node_modules
+COPY --from=build /moonsphere/moonsphere-landing-page/dist/ /msph/dist
 
 COPY moonsphere-landing-page/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh

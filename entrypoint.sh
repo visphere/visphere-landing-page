@@ -5,4 +5,4 @@
 # Originally developed by Miłosz Gilga <https://miloszgilga.pl>
 #
 
-node /msph-landing-page-content/dist/server/entry.mjs
+node /msph/dist/server/entry.mjs
