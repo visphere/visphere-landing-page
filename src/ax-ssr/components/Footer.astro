@@ -26,7 +26,7 @@ const footerLinks = {
 
 const { contentDistributorBaseUrl: cdnUrl, clientBaseUrl } = environment;
 
-const logoUrl = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
+const bgDevicesUrl = `${cdnUrl}/static/gfx/devices-bg.svg`;
 const iconUrl = `${cdnUrl}/static/logo/moonsphere-light-small-variant-2.svg`;
 const currYear = new Date().getFullYear();
 
@@ -35,118 +35,158 @@ const changeCamelToParamCase = (link: string): string =>
 ---
 
 <footer
-  class="p-5 md:p-5 lg:p-10 bg-msph-dark-900 text-msph-light-100 relative z-10">
-  <div
-    class="grid grid-cols-12 gap-y-5 lg:gap-y-10 px-0 lg:px-10 msph-safe-container">
+  class="msph-footer__container bg-msph-dark-900 text-msph-light-100 relative z-10">
+  <div class="msph-footer__wrapper">
     <div
-      class="col-span-12 md:col-span-5 lg:col-span-4 flex flex-col items-center sm:items-start sm:justify-center">
-      <a
-        href={i18nHref('/', lang)}
-        class="flex flex-col sm:flex-row w-fit items-center">
-        <img src={logoUrl} alt="" width="50" height="50" />
-        <h2 class="mt-2 sm:mt-0 sm:ms-3 text-2xl font-logo">MoonSphere</h2>
-      </a>
-      <p class="mt-8 leading-[21px] mb-5 text-msph-tint-300">
-        {t('description')}
-      </p>
-      <div class="w-full">
-        <LangPicker />
-      </div>
-    </div>
-    <div class="lg:col-span-1 hidden sm:block"></div>
-    <div
-      class="col-span-12 md:col-span-6 lg:col-span-7 grid grid-cols-12 gap-5 lg:gap-10">
-      <div class="col-span-12 sm:col-span-6 lg:col-span-4">
-        <h3 class="text-msph-tint-500 mb-2 md:mb-4">
-          {t('headers.application.name')}
-        </h3>
-        <ul class="grid gap-1">
-          {
-            footerLinks.application.map(link => (
-              <li>
-                <a
-                  href={i18nHref(`/${link}`, lang)}
-                  class="msph-footer__link font-light">
-                  {t(`headers.application.links.${link}`)}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="col-span-12 sm:col-span-6 lg:col-span-4">
-        <h3 class="text-msph-tint-500 mb-2 md:mb-4">
-          {t('headers.start.name')}
-        </h3>
-        <ul class="grid gap-1">
-          {
-            footerLinks.start.map(link => (
-              <li>
-                <a
-                  href={i18nClientHref(
-                    `${clientBaseUrl}/auth/${changeCamelToParamCase(link)}`,
-                    locale
-                  )}
-                  class="msph-footer__link font-light">
-                  {t(`headers.start.links.${link}`)}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="col-span-12 sm:col-span-6 lg:col-span-4">
-        <h3 class="text-msph-tint-500 mb-2 md:mb-4">
-          {t('headers.policies.name')}
-        </h3>
-        <ul class="grid gap-1">
-          {
-            footerLinks.policies.map(link => (
-              <li>
-                <a
-                  href={i18nHref(`/${changeCamelToParamCase(link)}`, lang)}
-                  class="msph-footer__link font-light">
-                  {t(`headers.policies.links.${link}`)}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
-    <div class="col-span-12">
-      <hr class="border-msph-dark-700 mb-3" />
-      <div class="msph-copy-footer__container">
-        <div class="msph-copy-footer__rights">
-          <div>
-            <span class="text-msph-tint-300 font-medium me-1"
-              >&copy; {currYear} by</span
-            >
-            <a href={i18nHref('/', lang)} class="hover:underline"
-              >MoonSphere Systems</a
-            >
-          </div>
-          <div class="flex justify-center md:justify-start">
-            <span class="text-msph-tint-300 font-medium me-2">Powered by</span>
-            <div class="flex">
-              <img
-                src={iconUrl}
-                alt=""
-                width="16"
-                height="16"
-                class="mt-0.5 object-contain me-1"
-              />
-              <span class="font-logo">MoonSphere</span>
-            </div>
-          </div>
+      class="grid grid-cols-12 gap-y-10 sm:gap-x-12 mt-10 md:mt-0 mb-10 md:mb-20">
+      <div
+        class="col-span-12 md:col-span-8 grid grid-cols-12 gap-8 text-lg order-1 md:order-0">
+        <div class="col-span-12 sm:col-span-6 lg:col-span-4">
+          <h3 class="font-medium text-msph-tint-400 mb-2 md:mb-4">
+            {t('headers.application.name')}
+          </h3>
+          <ul class="grid gap-y-4 text-xl">
+            {
+              footerLinks.application.map(link => (
+                <li>
+                  <a
+                    href={i18nHref(`/${link}`, lang)}
+                    class="msph-footer__link">
+                    {t(`headers.application.links.${link}`)}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
         </div>
-        <div class="w-full md:w-fit">
+        <div class="col-span-12 sm:col-span-6 lg:col-span-4">
+          <h3 class="font-medium text-msph-tint-400 mb-2 md:mb-4">
+            {t('headers.start.name')}
+          </h3>
+          <ul class="grid gap-y-4 text-xl">
+            {
+              footerLinks.start.map(link => (
+                <li>
+                  <a
+                    href={i18nClientHref(
+                      `${clientBaseUrl}/auth/${changeCamelToParamCase(link)}`,
+                      locale
+                    )}
+                    class="msph-footer__link">
+                    {t(`headers.start.links.${link}`)}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="col-span-12 sm:col-span-6 lg:col-span-4">
+          <h3 class="font-medium text-msph-tint-400 mb-2 md:mb-4">
+            {t('headers.policies.name')}
+          </h3>
+          <ul class="grid gap-y-4 text-xl">
+            {
+              footerLinks.policies.map(link => (
+                <li>
+                  <a
+                    href={i18nHref(`/${changeCamelToParamCase(link)}`, lang)}
+                    class="msph-footer__link">
+                    {t(`headers.policies.links.${link}`)}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-4 order-0 md:order-1">
+        <img src={bgDevicesUrl} alt="" width="80%" class="mx-auto mb-8" />
+        <a
+          href={i18nHref('/download', lang)}
+          target="_blank"
+          class="msph-button msph-button--primary mb-2">
+          {t(`downloadAppButton`)}
+        </a>
+        <a
+          href={i18nClientHref(clientBaseUrl || '/', locale)}
+          class="msph-button bg-msph-light-300 text-msph-dark-900 mb-2">
+          {t(`openAppButton`)}
+        </a>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-5 msph-safe-container">
+      <div
+        class="col-span-12 lg:col-span-8 text-center lg:text-start text-msph-tint-400">
+        {t(`description`)}
+      </div>
+      <div
+        class="col-span-12 lg:col-span-4 flex justify-center lg:justify-end gap-x-6">
+        <a href="https://facebook.com" target="_blank" class="p-1">
+          <img
+            src={`${cdnUrl}/static/icon/social/fb.svg`}
+            alt="fb"
+            width="25px"
+          />
+        </a>
+        <a href="https://youtube.com" target="_blank" class="p-1">
+          <img
+            src={`${cdnUrl}/static/icon/social/yt.svg`}
+            alt="yt"
+            width="25px"
+          />
+        </a>
+        <a href="https://instagram.com" target="_blank" class="p-1">
+          <img
+            src={`${cdnUrl}/static/icon/social/ig.svg`}
+            alt="ig"
+            width="25px"
+          />
+        </a>
+        <a href="https://twitter.com" target="_blank" class="p-1">
+          <img
+            src={`${cdnUrl}/static/icon/social/x.svg`}
+            alt="x"
+            width="25px"
+          />
+        </a>
+        <a href="https://tiktok.com" target="_blank" class="p-1">
+          <img
+            src={`${cdnUrl}/static/icon/social/tt.svg`}
+            alt="tiktok"
+            width="25px"
+          />
+        </a>
+      </div>
+    </div>
+    <hr class="my-8 border-msph-dark-700" />
+    <div class="msph-copy-footer__container">
+      <div class="msph-copy-footer__rights">
+        <div class="msph-copy-footer__wrapper">
+          <span class="text-msph-tint-400 font-medium me-1"
+            >&copy; {currYear} by</span
+          >
           <a
-            href={i18nClientHref(clientBaseUrl!, locale)}
-            class="msph-copy-footer__open-app-button">
-            {t('openAppButton')}
-          </a>
+            href={i18nHref('/', lang)}
+            target="_blank"
+            class="font-medium hover:underline">MoonSphere Systems</a
+          >
         </div>
+        <div class="msph-copy-footer__wrapper">
+          <span class="text-msph-tint-400 font-medium me-2">Powered by</span>
+          <div class="flex">
+            <img
+              src={iconUrl}
+              alt=""
+              width="16"
+              height="16"
+              class="object-contain me-1"
+            />
+            <span class="font-logo font-medium">Msph Technologies</span>
+          </div>
+        </div>
+      </div>
+      <div class="msph-copy-footer__buttons">
+        <LangPicker />
       </div>
     </div>
   </div>
