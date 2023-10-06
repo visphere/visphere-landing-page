@@ -29,7 +29,7 @@ const MobileNav: React.FC<Props> = ({
   children,
 }): JSX.Element => {
   const { contentDistributorBaseUrl: cdnUrl } = environment;
-  const logoImagePath = `${cdnUrl}/static/logo/moonsphere-orange-variant-1.svg`;
+  const logoImagePath = `${cdnUrl}/static/logo/moonsphere.svg`;
 
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const enableScrollRef = useRef<HTMLElement>(null);
@@ -46,8 +46,8 @@ const MobileNav: React.FC<Props> = ({
         className="msph-slide-nav__container top-0 z-50">
         <div className="flex justify-between items-center">
           <a href={i18nHref('/', lang)} className="flex gap-2">
-            <img src={logoImagePath} alt="" width={30} height={30} />
-            <h1 className="font-logo text-2xl leading-[28px] font-medium">
+            <img src={logoImagePath} alt="" width={35} height={35} />
+            <h1 className="text-2xl font-semibold leading-[28px]">
               MoonSphere
             </h1>
           </a>
