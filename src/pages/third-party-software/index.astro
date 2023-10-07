@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import axios from 'axios';
@@ -19,7 +19,7 @@ type LibraryData = {
 };
 
 const { lang } = getSafetyLocaleSSR(Astro.url);
-const t = useTranslationsSSR('msph.landingPage.thirdPartySoftware.pageContent');
+const t = useTranslationsSSR('vsph.landingPage.thirdPartySoftware.pageContent');
 
 const { contentDistributorBaseXHR: cdnBaseXHR } = environment;
 
@@ -37,25 +37,25 @@ const headerVariant: PageHeaderVariant = {};
 
 <MainLayout i18nPageId="thirdPartySoftware" headerVariant={headerVariant}>
   <div slot="headerContent">
-    <h1 class="msph-root-header">
+    <h1 class="vsph-root-header">
       {t('header')}
     </h1>
     <p class="mb-3">
       {t('paragraph1')}{' '}
-      <a href={i18nHref('/licenses', lang)} class="msph-primary-href"
+      <a href={i18nHref('/licenses', lang)} class="vsph-primary-href"
         >{t('belowLink')}</a
       >.
     </p>
     <p class="mb-3">
       {t('paragraph2')}{' '}
-      <a href={i18nHref('/about', lang)} class="msph-primary-href"
+      <a href={i18nHref('/about', lang)} class="vsph-primary-href"
         >{t('belowLink')}</a
       >.
     </p>
   </div>
   <div slot="mainContent">
-    <section class="bg-msph-gray-950 text-msph-light-100 overflow-hidden">
-      <div class="msph-safe-container px-3 h-[800px] overflow-hidden">
+    <section class="bg-vsph-gray-950 text-vsph-light-100 overflow-hidden">
+      <div class="vsph-safe-container px-3 h-[800px] overflow-hidden">
         <InteractiveLibraries client:load headerContent={headerContent}>
           {
             libsData.map(({ name, repoUrl }: LibraryData) => (
@@ -65,7 +65,7 @@ const headerVariant: PageHeaderVariant = {};
                   title={name}
                   target="_blank"
                   rel="noreferrer"
-                  class="truncate hover:text-msph-gray-300 text-xl">
+                  class="truncate hover:text-vsph-gray-300 text-xl">
                   {name}
                 </a>
               </li>

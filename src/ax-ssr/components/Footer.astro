@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import * as changeCase from 'change-case';
@@ -11,7 +11,7 @@ import { getSafetyLocaleSSR } from '~/i18n/utils';
 import LangPicker from './LangPicker.astro';
 
 const { lang, locale } = getSafetyLocaleSSR(Astro.url);
-const t = useTranslationsSSR('msph.webCommon.footer');
+const t = useTranslationsSSR('vsph.webCommon.footer');
 
 const footerLinks = {
   application: ['about', 'download', 'brand', 'tutorial', 'status'],
@@ -27,7 +27,7 @@ const footerLinks = {
 const { contentDistributorBaseUrl: cdnUrl, clientBaseUrl } = environment;
 
 const bgDevicesUrl = `${cdnUrl}/static/gfx/devices-bg.svg`;
-const iconUrl = `${cdnUrl}/static/logo/msph-small-light.svg`;
+const iconUrl = `${cdnUrl}/static/logo/vsph-small-light.svg`;
 const currYear = new Date().getFullYear();
 
 const changeCamelToParamCase = (link: string): string =>
@@ -35,14 +35,14 @@ const changeCamelToParamCase = (link: string): string =>
 ---
 
 <footer
-  class="msph-footer__container bg-msph-dark-900 text-msph-light-100 relative z-10">
-  <div class="msph-footer__wrapper">
+  class="vsph-footer__container bg-vsph-dark-900 text-vsph-light-100 relative z-10">
+  <div class="vsph-footer__wrapper">
     <div
       class="grid grid-cols-12 gap-y-10 sm:gap-x-12 mt-10 md:mt-0 mb-10 md:mb-20">
       <div
         class="col-span-12 md:col-span-8 grid grid-cols-12 gap-8 text-lg order-1 md:order-0">
         <div class="col-span-12 sm:col-span-6 lg:col-span-4">
-          <h3 class="font-medium text-msph-tint-400 mb-2 md:mb-4">
+          <h3 class="font-medium text-vsph-tint-400 mb-2 md:mb-4">
             {t('headers.application.name')}
           </h3>
           <ul class="grid gap-y-4 text-xl">
@@ -51,7 +51,7 @@ const changeCamelToParamCase = (link: string): string =>
                 <li>
                   <a
                     href={i18nHref(`/${link}`, lang)}
-                    class="msph-footer__link">
+                    class="vsph-footer__link">
                     {t(`headers.application.links.${link}`)}
                   </a>
                 </li>
@@ -60,7 +60,7 @@ const changeCamelToParamCase = (link: string): string =>
           </ul>
         </div>
         <div class="col-span-12 sm:col-span-6 lg:col-span-4">
-          <h3 class="font-medium text-msph-tint-400 mb-2 md:mb-4">
+          <h3 class="font-medium text-vsph-tint-400 mb-2 md:mb-4">
             {t('headers.start.name')}
           </h3>
           <ul class="grid gap-y-4 text-xl">
@@ -72,7 +72,7 @@ const changeCamelToParamCase = (link: string): string =>
                       `${clientBaseUrl}/auth/${changeCamelToParamCase(link)}`,
                       locale
                     )}
-                    class="msph-footer__link">
+                    class="vsph-footer__link">
                     {t(`headers.start.links.${link}`)}
                   </a>
                 </li>
@@ -81,7 +81,7 @@ const changeCamelToParamCase = (link: string): string =>
           </ul>
         </div>
         <div class="col-span-12 sm:col-span-6 lg:col-span-4">
-          <h3 class="font-medium text-msph-tint-400 mb-2 md:mb-4">
+          <h3 class="font-medium text-vsph-tint-400 mb-2 md:mb-4">
             {t('headers.policies.name')}
           </h3>
           <ul class="grid gap-y-4 text-xl">
@@ -90,7 +90,7 @@ const changeCamelToParamCase = (link: string): string =>
                 <li>
                   <a
                     href={i18nHref(`/${changeCamelToParamCase(link)}`, lang)}
-                    class="msph-footer__link">
+                    class="vsph-footer__link">
                     {t(`headers.policies.links.${link}`)}
                   </a>
                 </li>
@@ -104,19 +104,19 @@ const changeCamelToParamCase = (link: string): string =>
         <a
           href={i18nHref('/download', lang)}
           target="_blank"
-          class="msph-button msph-button--primary mb-2">
+          class="vsph-button vsph-button--primary mb-2">
           {t(`downloadAppButton`)}
         </a>
         <a
           href={i18nClientHref(clientBaseUrl || '/', locale)}
-          class="msph-button bg-msph-light-300 text-msph-dark-900 mb-2">
+          class="vsph-button bg-vsph-light-300 text-vsph-dark-900 mb-2">
           {t(`openAppButton`)}
         </a>
       </div>
     </div>
-    <div class="grid grid-cols-12 gap-5 msph-safe-container">
+    <div class="grid grid-cols-12 gap-5 vsph-safe-container">
       <div
-        class="col-span-12 lg:col-span-8 text-center lg:text-start text-msph-tint-400">
+        class="col-span-12 lg:col-span-8 text-center lg:text-start text-vsph-tint-400">
         {t(`description`)}
       </div>
       <div
@@ -158,21 +158,21 @@ const changeCamelToParamCase = (link: string): string =>
         </a>
       </div>
     </div>
-    <hr class="my-8 border-msph-dark-700" />
-    <div class="msph-copy-footer__container">
-      <div class="msph-copy-footer__rights">
-        <div class="msph-copy-footer__wrapper">
-          <span class="text-msph-tint-400 font-medium me-1"
+    <hr class="my-8 border-vsph-dark-700" />
+    <div class="vsph-copy-footer__container">
+      <div class="vsph-copy-footer__rights">
+        <div class="vsph-copy-footer__wrapper">
+          <span class="text-vsph-tint-400 font-medium me-1"
             >&copy; {currYear} by</span
           >
           <a
             href={i18nHref('/', lang)}
             target="_blank"
-            class="font-medium hover:underline">MoonSphere Systems</a
+            class="font-medium hover:underline">Visphere Systems</a
           >
         </div>
-        <div class="msph-copy-footer__wrapper">
-          <span class="text-msph-tint-400 font-medium me-2">Powered by</span>
+        <div class="vsph-copy-footer__wrapper">
+          <span class="text-vsph-tint-400 font-medium me-2">Powered by</span>
           <div class="flex">
             <img
               src={iconUrl}
@@ -181,11 +181,11 @@ const changeCamelToParamCase = (link: string): string =>
               height="16"
               class="object-contain me-1"
             />
-            <span class="font-logo font-medium">Msph Technologies</span>
+            <span class="font-medium">Vsph Technologies</span>
           </div>
         </div>
       </div>
-      <div class="msph-copy-footer__buttons">
+      <div class="vsph-copy-footer__buttons">
         <LangPicker />
       </div>
     </div>

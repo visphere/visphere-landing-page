@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
@@ -10,7 +10,7 @@ import { getSafetyLocaleSSR } from '~/i18n/utils';
 import MainLayout from '~/layouts/main-layout.astro';
 
 const { lang } = getSafetyLocaleSSR(Astro.url);
-const t = useTranslationsSSR('msph.landingPage.privacyPolicy.pageContent');
+const t = useTranslationsSSR('vsph.landingPage.privacyPolicy.pageContent');
 
 const headerVariant: PageHeaderVariant = {};
 ---

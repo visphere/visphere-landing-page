@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import ChangeLang from '~/ax-csr/components/ChangeLang';
@@ -36,12 +36,12 @@ const { contentDistributorBaseUrl: cdnUrl, i18nLocalesMap } = environment;
         <a
           href={i18nWithoutLangPrefixHref(Astro.url.pathname, id)}
           class:list={[
-            'msph-footer__select-list-element',
+            'vsph-footer__select-list-element',
             theme === 'dark'
-              ? 'hover:bg-msph-dark-700'
-              : 'hover:bg-msph-tint-200',
+              ? 'hover:bg-vsph-dark-700'
+              : 'hover:bg-vsph-tint-200',
             value === locale.locale &&
-              'msph-footer__select-list-element--active',
+              'vsph-footer__select-list-element--active',
           ]}>
           <img
             src={`${cdnUrl}/static/icon/lang/${value}.png`}

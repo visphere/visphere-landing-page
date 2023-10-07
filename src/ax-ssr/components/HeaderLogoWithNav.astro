@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import { environment } from '~/env/environment';
@@ -26,7 +26,7 @@ type HeaderLink = {
 };
 
 const {
-  foreground = 'text-msph-dark-900',
+  foreground = 'text-vsph-dark-900',
   signInButton,
   signUpButton,
   openAppButton,
@@ -35,7 +35,7 @@ const {
 } = Astro.props as Props;
 
 const { lang, locale } = getSafetyLocaleSSR(Astro.url);
-const t = useTranslationsSSR('msph.webCommon.footer');
+const t = useTranslationsSSR('vsph.webCommon.footer');
 
 const { contentDistributorBaseUrl: cdnUrl } = environment;
 
@@ -51,14 +51,14 @@ const headerLinks: HeaderLink[] = [
 }));
 
 const { clientBaseUrl } = environment;
-const logoImagePath = `${cdnUrl}/static/logo/moonsphere.svg`;
+const logoImagePath = `${cdnUrl}/static/logo/visphere.svg`;
 ---
 
 <div class="flex justify-between items-center w-full">
   <div class:list={['flex gap-10 items-center', foreground]}>
     <a href={i18nHref('/', lang)} class="flex items-center gap-2">
       <img src={logoImagePath} alt="" width={35} height={35} />
-      <h1 class="text-2xl font-semibold leading-[28px]">MoonSphere</h1>
+      <h1 class="text-2xl font-semibold leading-[28px]">Visphere</h1>
     </a>
     <ul class="flex gap-4 hidden md:flex">
       {
@@ -80,20 +80,20 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere.svg`;
         <a
           href={i18nClientHref(`${clientBaseUrl}/auth/login`, locale)}
           class:list={[
-            'hidden xl:block msph-slide-nav__button',
-            signInButton?.bg || 'bg-msph-tint-500',
-            signInButton?.fg || 'text-msph-light-100',
-            signInButton?.border || 'border-msph-tint-500',
+            'hidden xl:block vsph-slide-nav__button',
+            signInButton?.bg || 'bg-vsph-tint-500',
+            signInButton?.fg || 'text-vsph-light-100',
+            signInButton?.border || 'border-vsph-tint-500',
           ]}>
           {t(`headers.start.links.login`)}
         </a>
         <a
           href={i18nClientHref(`${clientBaseUrl}/auth/register`, locale)}
           class:list={[
-            'msph-slide-nav__button--outline',
+            'vsph-slide-nav__button--outline',
             signUpButton?.bg || 'bg-transparent',
-            signUpButton?.fg || 'text-msph-tint-500',
-            signUpButton?.border || 'border-msph-tint-500',
+            signUpButton?.fg || 'text-vsph-tint-500',
+            signUpButton?.border || 'border-vsph-tint-500',
           ]}>
           {t(`headers.start.links.register`)}
         </a>
@@ -102,10 +102,10 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere.svg`;
         <a
           href={i18nClientHref(clientBaseUrl!, locale)}
           class:list={[
-            'msph-slide-nav__button msph-slide-nav__button--inverse',
-            openAppButton?.bg || 'bg-msph-dark-900',
-            openAppButton?.fg || 'text-msph-light-100',
-            openAppButton?.border || 'border-msph-dark-900',
+            'vsph-slide-nav__button vsph-slide-nav__button--inverse',
+            openAppButton?.bg || 'bg-vsph-dark-900',
+            openAppButton?.fg || 'text-vsph-light-100',
+            openAppButton?.border || 'border-vsph-dark-900',
           ]}>
           {t(`openAppButton`)}
         </a>
@@ -127,7 +127,7 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere.svg`;
             <li class="flex">
               <a
                 href={i18nHref(`/${link}`, lang)}
-                class="msph-button shadow-none bg-msph-tint-100 hover:bg-msph-tint-200 w-full py-3 px-5 text-xl">
+                class="vsph-button shadow-none bg-vsph-tint-100 hover:bg-vsph-tint-200 w-full py-3 px-5 text-xl">
                 {translation}
               </a>
             </li>
@@ -137,17 +137,17 @@ const logoImagePath = `${cdnUrl}/static/logo/moonsphere.svg`;
       <div class="grid grid-cols-12 gap-3">
         <a
           href={i18nClientHref(`${clientBaseUrl}/auth/login`, locale)}
-          class="msph-mobile-nav__button sm:col-span-6">
+          class="vsph-mobile-nav__button sm:col-span-6">
           {t(`headers.start.links.login`)}
         </a>
         <a
           href={i18nClientHref(`${clientBaseUrl}/auth/register`, locale)}
-          class="msph-mobile-nav__button--outline sm:col-span-6">
+          class="vsph-mobile-nav__button--outline sm:col-span-6">
           {t(`headers.start.links.register`)}
         </a>
         <a
           href={i18nClientHref(clientBaseUrl!, locale)}
-          class="msph-mobile-nav__button border-msph-dark-900 bg-msph-dark-900 text-msph-light-100">
+          class="vsph-mobile-nav__button border-vsph-dark-900 bg-vsph-dark-900 text-vsph-light-100">
           {t(`openAppButton`)}
         </a>
       </div>

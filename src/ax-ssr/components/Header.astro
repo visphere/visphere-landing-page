@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import SlideHeader from '~/ax-csr/components/SlideHeader';
@@ -28,8 +28,8 @@ type Props = {
 
 const { headerVariant } = Astro.props as Props;
 const {
-  background = 'bg-msph-light-100',
-  foreground = 'text-msph-dark-900',
+  background = 'bg-vsph-light-100',
+  foreground = 'text-vsph-dark-900',
   signInButton,
   signUpButton,
   openAppButton,
@@ -40,12 +40,12 @@ const {
 
 <SlideHeader client:load>
   <div
-    class="msph-safe-container border border-msph-tint-200 bg-msph-light-300 shadow-md px-6 py-4 rounded-[25px]">
+    class="vsph-safe-container border border-vsph-tint-200 bg-vsph-light-300 shadow-md px-6 py-4 rounded-[25px]">
     <HeaderLogoWithNav />
   </div>
 </SlideHeader>
 <div class:list={['w-100', background]}>
-  <header class="msph-safe-container py-4 px-3 lg:py-7">
+  <header class="vsph-safe-container py-4 px-3 lg:py-7">
     <HeaderLogoWithNav
       foreground={foreground}
       signInButton={signInButton}
@@ -55,7 +55,7 @@ const {
       langPickedTheme={langPickedTheme}
     />
   </header>
-  <div class:list={['msph-safe-container mt-12 mb-5 px-3', foreground]}>
+  <div class:list={['vsph-safe-container mt-12 mb-5 px-3', foreground]}>
     <slot />
   </div>
 </div>

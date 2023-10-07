@@ -1,5 +1,5 @@
 {
-  "name": "moonsphere-landing-page",
+  "name": "visphere-landing-page",
   "type": "module",
   "version": "1.0.0",
   "scripts": {
@@ -18,9 +18,9 @@
   },
   "private": true,
   "author": {
-    "name": "MoonSphere Systems",
-    "email": "info@moonsphere.pl",
-    "url": "https://moonsphere.pl"
+    "name": "Visphere",
+    "email": "info@visphere.pl",
+    "url": "https://visphere.pl"
   },
   "lint-staged": {
     "**/*.{ts,js,cjs,astro,json}": [

@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
@@ -8,14 +8,14 @@ import LostSection from '~/ax-ssr/components/LostSection.astro';
 import { useTranslationsSSR } from '~/i18n/translations';
 import MainLayout from '~/layouts/main-layout.astro';
 
-const t = useTranslationsSSR('msph.landingPage.status.pageContent');
+const t = useTranslationsSSR('vsph.landingPage.status.pageContent');
 
 const headerVariant: PageHeaderVariant = {};
 ---
 
 <MainLayout i18nPageId="status" headerVariant={headerVariant}>
   <div slot="headerContent">
-    <h1 class="msph-root-header">
+    <h1 class="vsph-root-header">
       {t('header')}
     </h1>
     <p class="mb-3">
@@ -23,8 +23,8 @@ const headerVariant: PageHeaderVariant = {};
     </p>
   </div>
   <div slot="mainContent">
-    <section class="bg-msph-tint-100 py-8">
-      <div class="msph-safe-container px-3">APP STATUS ROOT ELEMENT</div>
+    <section class="bg-vsph-tint-100 py-8">
+      <div class="vsph-safe-container px-3">APP STATUS ROOT ELEMENT</div>
     </section>
     <LostSection />
   </div>

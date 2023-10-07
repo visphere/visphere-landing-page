@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import * as React from 'react';
@@ -32,14 +32,14 @@ const InteractiveButton: React.FC<Props> = ({
           width: `calc(100% + ${offset}px)`,
           height: `calc(100% - ${offset}px)`,
         }}
-        className="msph-interactive-libraries__button"></span>
+        className="vsph-interactive-libraries__button"></span>
     )
   );
 
   return (
     <button
       onClick={clickCallback}
-      className="relative h-[50px] px-5 text-2xl bg-msph-gray-600 text-msph-light-100 bg-gradient-to-t hover:-translate-y-1">
+      className="relative h-[50px] px-5 text-2xl bg-vsph-gray-600 text-vsph-light-100 bg-gradient-to-t hover:-translate-y-1">
       <span className="relative z-10">{children}</span>
       {generatesNotchs}
     </button>

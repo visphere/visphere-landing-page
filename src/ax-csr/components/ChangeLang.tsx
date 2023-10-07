@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import * as React from 'react';
@@ -52,7 +52,7 @@ const ChangeLang: React.FC<Props> = ({
       <button
         ref={buttonRef}
         onClick={handleToggleMenuVisibility}
-        className="msph-footer__select-list-button border-msph-dark-700 h-full">
+        className="vsph-footer__select-list-button border-vsph-dark-700 h-full">
         <img
           src={`${cdnPatch}/static/icon/lang/${value}.png`}
           width="23"
@@ -68,11 +68,11 @@ const ChangeLang: React.FC<Props> = ({
         transition={{ ease: 'easeInOut' }}
         variants={variants}
         className={clsx(
-          'msph-footer__select-list-container border-msph-dark-700 z-0 opacity-0',
+          'vsph-footer__select-list-container border-vsph-dark-700 z-0 opacity-0',
           position === 'bottom'
             ? 'translate-y-[15%] right-0 top-full mt-1 mb-0'
             : '-translate-y-[15%] left-0 bottom-full',
-          theme === 'dark' ? 'bg-msph-dark-900' : 'bg-msph-light-100'
+          theme === 'dark' ? 'bg-vsph-dark-900' : 'bg-vsph-light-100'
         )}>
         {children}
       </motion.ul>

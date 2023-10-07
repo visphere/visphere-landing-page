@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import nodejs from '@astrojs/node';
@@ -14,7 +14,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import { resolve } from 'path';
 
-const envPath = resolve(process.cwd(), '..', 'moonsphere-base', '.env');
+const envPath = resolve(process.cwd(), '..', 'visphere-base', '.env');
 if (fs.existsSync(envPath)) {
   dotenv.config({ path: envPath });
 }
@@ -49,7 +49,7 @@ export default ({
       host: '0.0.0.0',
       port: isProdMode
         ? 80
-        : Number(process.env.ENV_MSPH_LANDING_PAGE_DEV_PORT) || 3001,
+        : Number(process.env.ENV_VSPH_LANDING_PAGE_DEV_PORT) || 3001,
     },
     integrations: [
       tailwind(),

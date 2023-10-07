@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import { environment } from '~/env/environment';
@@ -9,23 +9,23 @@ import { i18nClientHref, i18nHref } from '~/i18n/url-parser';
 import { getSafetyLocaleSSR } from '~/i18n/utils';
 
 const { lang, locale } = getSafetyLocaleSSR(Astro.url);
-const t = useTranslationsSSR('msph.landingPage.lostSection');
+const t = useTranslationsSSR('vsph.landingPage.lostSection');
 
 const { clientBaseUrl } = environment;
 ---
 
-<section class="msph_ratio-container my-10 sm:my-20 px-3">
+<section class="vsph-safe-container my-10 sm:my-20 px-3">
   <p class="text-2xl md:text-3xl font-extrabold text-center mb-7">
     {t('areYouLost')}
   </p>
   <div
     class="flex flex-col gap-y-2 sm:gap-y-0 sm:flex-row justify-center gap-x-4">
-    <a href={i18nHref('/download', lang)} class="msph-download-app-button">
+    <a href={i18nHref('/download', lang)} class="vsph-download-app-button">
       {t('downloadApp')}</a
     >
     <a
       href={i18nClientHref(clientBaseUrl!, locale)}
-      class="msph-open-app-in-browser-button">
+      class="vsph-open-app-in-browser-button">
       {t('openAppInBrowser')}</a
     >
   </div>

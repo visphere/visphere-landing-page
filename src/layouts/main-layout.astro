@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import { environment } from '~/env/environment';
@@ -19,7 +19,7 @@ type AstroProps = {
 
 const { i18nPageId, pageTitle, headerVariant } = Astro.props as AstroProps;
 const { locale, lang } = getSafetyLocaleSSR(Astro.url);
-const t = useTranslationsSSR('msph');
+const t = useTranslationsSSR('vsph');
 
 const pageTitlePrefix = i18nPageId
   ? `${t(`landingPage.seo.${i18nPageId}Page.title`)} | `
@@ -47,7 +47,7 @@ try {
 <html lang={locale}>
   <head>
     <meta charset="utf-8" />
-    <title>{`${pageTitlePrefix}MoonSphere`}</title>
+    <title>{`${pageTitlePrefix}Visphere`}</title>
     <link rel="preconnect" href={`${cdnUrl}/static`} />
     <link rel="icon" type="image/png" sizes="48x48" href={faviconUrl} />
     <meta name="keywords" content={t('webCommon.metaProperty.keywords')} />
@@ -63,7 +63,7 @@ try {
     <!-- start OpenGraph:SEO -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={i18nSeoHref(baseLandingUrl!, lang)} />
-    <meta property="og:title" content="MoonSphere" />
+    <meta property="og:title" content="Visphere" />
     <meta
       property="og:description"
       content={t('webCommon.metaProperty.description')}
@@ -71,7 +71,7 @@ try {
     <meta property="og:image" content={seoBannerUrl} />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={i18nSeoHref(baseLandingUrl!, lang)} />
-    <meta property="twitter:title" content="MoonSphere" />
+    <meta property="twitter:title" content="Visphere" />
     <meta
       property="twitter:description"
       content={t('webCommon.metaProperty.description')}
@@ -81,7 +81,7 @@ try {
     <!-- end OpenGraph:SEO -->
   </head>
   <body
-    class="flex flex-col min-h-screen font-medium bg-msph-light-100 text-msph-dark-900">
+    class="flex flex-col min-h-screen font-medium bg-vsph-light-100 text-vsph-dark-900">
     {couldNotConnectWithCdn && 'Could not connect with CDN server'}
     {
       !couldNotConnectWithCdn && (

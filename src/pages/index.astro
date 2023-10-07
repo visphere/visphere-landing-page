@@ -1,6 +1,6 @@
 ---
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import { PageHeaderVariant } from '~/ax-ssr/components/Header.astro';
@@ -10,19 +10,19 @@ import { getSafetyLocaleSSR } from '~/i18n/utils';
 import MainLayout from '~/layouts/main-layout.astro';
 
 const { lang } = getSafetyLocaleSSR(Astro.url);
-const t = useTranslationsSSR('msph.landingPage.root.pageContent');
+const t = useTranslationsSSR('vsph.landingPage.root.pageContent');
 
 const headerVariant: PageHeaderVariant = {
-  background: 'bg-msph-dark-900',
-  foreground: 'text-msph-light-100',
+  background: 'bg-vsph-dark-900',
+  foreground: 'text-vsph-light-100',
   signUpButton: {
-    fg: 'text-msph-light-100',
-    border: 'border-msph-light-100',
+    fg: 'text-vsph-light-100',
+    border: 'border-vsph-light-100',
   },
   openAppButton: {
-    bg: 'bg-msph-light-100',
-    fg: 'text-msph-dark-900',
-    border: 'border-msph-light-100',
+    bg: 'bg-vsph-light-100',
+    fg: 'text-vsph-dark-900',
+    border: 'border-vsph-light-100',
   },
   fontWeight: 'font-light',
   langPickedTheme: 'dark',

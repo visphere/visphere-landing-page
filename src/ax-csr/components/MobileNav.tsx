@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 by MoonSphere Systems
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
  * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
  */
 import { useRef, useState } from 'react';
@@ -25,11 +25,11 @@ type Props = {
 
 const MobileNav: React.FC<Props> = ({
   lang,
-  foreground = 'text-msph-dark-900',
+  foreground = 'text-vsph-dark-900',
   children,
 }): JSX.Element => {
   const { contentDistributorBaseUrl: cdnUrl } = environment;
-  const logoImagePath = `${cdnUrl}/static/logo/moonsphere.svg`;
+  const logoImagePath = `${cdnUrl}/static/logo/visphere.svg`;
 
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const enableScrollRef = useRef<HTMLElement>(null);
@@ -43,13 +43,11 @@ const MobileNav: React.FC<Props> = ({
         transition={{ ease: 'easeInOut' }}
         variants={variants}
         ref={enableScrollRef}
-        className="msph-slide-nav__container top-0 z-50">
+        className="vsph-slide-nav__container top-0 z-50">
         <div className="flex justify-between items-center">
           <a href={i18nHref('/', lang)} className="flex gap-2">
             <img src={logoImagePath} alt="" width={35} height={35} />
-            <h1 className="text-2xl font-semibold leading-[28px]">
-              MoonSphere
-            </h1>
+            <h1 className="text-2xl font-semibold leading-[28px]">Visphere</h1>
           </a>
           <button className="p-2" onClick={() => setIsVisible(false)}>
             <XLg width={20} height={20} />
