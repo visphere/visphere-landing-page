@@ -4,8 +4,21 @@ ARG BUILD_MODE
 
 WORKDIR /visphere
 
-COPY visphere-base visphere-base/
-COPY visphere-landing-page visphere-landing-page/
+COPY visphere-base/tailwind visphere-base/tailwind/
+COPY visphere-base/webpack visphere-base/webpack/
+COPY visphere-base/s3-static visphere-base/s3-static/
+COPY visphere-base/.env visphere-base/
+COPY visphere-base/package.json visphere-base/
+COPY visphere-base/yarn.lock visphere-base/
+
+COPY visphere-landing-page/.vite visphere-landing-page/.vite/
+COPY visphere-landing-page/public visphere-landing-page/public/
+COPY visphere-landing-page/src visphere-landing-page/src/
+COPY visphere-landing-page/entrypoint.sh visphere-landing-page/
+COPY visphere-landing-page/package.json visphere-landing-page/
+COPY visphere-landing-page/tailwind.config.cjs visphere-landing-page/
+COPY visphere-landing-page/tsconfig.json visphere-landing-page/
+COPY visphere-landing-page/yarn.lock visphere-landing-page/
 
 WORKDIR /visphere/visphere-base
 
