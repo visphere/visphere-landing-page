@@ -2,4 +2,4 @@
 
 # Visphere Landing Page
 
-in progress
+Landing page written in Astro SSG/SSR with partial hydrations provided by React.
