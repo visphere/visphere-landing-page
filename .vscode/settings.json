@@ -28,8 +28,7 @@
     "includeGlob": ["**/*.sh"],
     "exclude": ["json", "jsonl", "jsonc"],
     "excludeGlob": ["./.husky/**/*", "./.vscode/**"],
-    "enforceHeader": true,
-    "replace": ["File name", "Last modified"]
+    "enforceHeader": true
   },
   "psi-header.lang-config": [
     {
