@@ -1,0 +1,33 @@
+---
+/*
+ * Copyright (c) 2023 by Visphere & Vsph Technologies
+ * Originally developed by Miłosz Gilga <https://miloszgilga.pl>
+ */
+
+import axios from 'axios';
+import { environment } from '~/env/environment';
+
+const { token } = Astro.params;
+
+const { contentDistributorBaseUrl: cdnUrl } = environment;
+const faviconUrl = `${cdnUrl}/static/favicon/favicon-nobadge.png`;
+
+let rawHtml;
+try {
+  const { data } = await axios.post(
+    'http://localhost:6055/api/v1/notification/mail/mirror/raw',
+    { token }
+  );
+  rawHtml = Buffer.from(data).toString('utf-8');
+} catch (err: any) {
+  return Astro.redirect('/');
+}
+---
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" sizes="48x48" href={faviconUrl} />
+  </head>
+  <body set:html={rawHtml} />
+</html>
